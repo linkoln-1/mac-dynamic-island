@@ -38,6 +38,7 @@ final class AgentStore: ObservableObject {
     let resolutions = PassthroughSubject<AgentPermissionResolution, Never>()
 
     private let policy: Policy
+    var liveFinishedRetention: (() -> TimeInterval)?
     private let now: () -> Date
     private let projectResolver = AgentProjectResolver()
     private var seenDedupKeys: [String] = []
@@ -188,17 +189,18 @@ final class AgentStore: ObservableObject {
 
     func sweep() {
         let moment = now()
+        let finishedRetention = liveFinishedRetention?() ?? policy.finishedRetention
         for (key, var session) in sessions {
             switch session.state {
             case .finished, .failed:
                 let anchor = session.finishedAt ?? session.lastActivityAt
-                if moment.timeIntervalSince(anchor) > policy.finishedRetention {
+                if moment.timeIntervalSince(anchor) > finishedRetention {
                     sessions.removeValue(forKey: key)
                 }
             case .idle:
 
                 let retention = session.hasEnded
-                    ? policy.finishedRetention : policy.idleRetention
+                    ? finishedRetention : policy.idleRetention
                 if moment.timeIntervalSince(session.lastActivityAt) > retention {
                     sessions.removeValue(forKey: key)
                 }

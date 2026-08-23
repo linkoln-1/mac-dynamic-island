@@ -565,6 +565,113 @@
         "ru" : { "stringUnit" : { "state" : "translated", "value" : "Пока нечего настраивать." } }
       }
     },
+    "settings.section.island" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Island" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Остров" } }
+      }
+    },
+    "settings.island.hoverOpen" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open on hover" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Раскрывать при наведении" } }
+      }
+    },
+    "settings.island.expandDelay" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Hover delay" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Задержка раскрытия" } }
+      }
+    },
+    "settings.island.collapseGrace" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Close delay" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Задержка сворачивания" } }
+      }
+    },
+    "settings.section.notifications" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Agent Notifications" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Уведомления агентов" } }
+      }
+    },
+    "settings.agents.autoClear" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Auto-clear finished after" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Автоочистка завершённых через" } }
+      }
+    },
+    "settings.section.general" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "General" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Основные" } }
+      }
+    },
+    "settings.launchAtLogin" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Launch at login" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Запускать при входе" } }
+      }
+    },
+    "settings.screenshots.limit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Buffer size" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Размер буфера" } }
+      }
+    },
+    "settings.attention.retention" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Keep history" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Хранить историю" } }
+      }
+    },
+    "settings.seconds.suffix" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "s" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "с" } }
+      }
+    },
+    "settings.items.count" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "variations" : { "plural" : {
+          "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld item" } },
+          "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld items" } }
+        } } },
+        "ru" : { "variations" : { "plural" : {
+          "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld элемент" } },
+          "few" : { "stringUnit" : { "state" : "translated", "value" : "%lld элемента" } },
+          "many" : { "stringUnit" : { "state" : "translated", "value" : "%lld элементов" } },
+          "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld элемента" } }
+        } } }
+      }
+    },
+    "settings.days.count" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "variations" : { "plural" : {
+          "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld day" } },
+          "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld days" } }
+        } } },
+        "ru" : { "variations" : { "plural" : {
+          "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld день" } },
+          "few" : { "stringUnit" : { "state" : "translated", "value" : "%lld дня" } },
+          "many" : { "stringUnit" : { "state" : "translated", "value" : "%lld дней" } },
+          "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld дня" } }
+        } } }
+      }
+    },
     "menu.quit" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -66,6 +66,7 @@
 		B726BCBC2DD6E59DF241D3D9 /* AgentActivityFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D4058E7E6F1728ECA095E6 /* AgentActivityFormatter.swift */; };
 		BBB2F295D966019B7086231F /* ScreenshotCardInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C5F36E5DA356ECE5135ADC /* ScreenshotCardInteraction.swift */; };
 		BE324519F16A547E103ED525 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F24EE472D466F25063729E3 /* AppDelegate.swift */; };
+		C198E3B8A0D627BFF9154B07 /* AppSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB88BF9B3E75D57143F7B0 /* AppSettingsTests.swift */; };
 		C1CED32DBFC47AC551AAB708 /* AttentionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF7A5058C7B5ACF4DAA964 /* AttentionModel.swift */; };
 		C2943A226784AC635F893D0D /* MediaRemoteAdapterProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21914DC191D2854AAD1CAFA0 /* MediaRemoteAdapterProvider.swift */; };
 		C333C3EB304B4119E1B1D840 /* ScreenshotDragPayloadBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593685BFD2EADEE48BBAECBB /* ScreenshotDragPayloadBuilder.swift */; };
@@ -75,6 +76,7 @@
 		C57D79F8F37943ED9203BCE5 /* AgentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3736EF29271CCFFA867466B9 /* AgentStore.swift */; };
 		CDCB26C8BF9ACA457B1E044F /* AgentStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5F80398DD7D009165A9F64 /* AgentStoreTests.swift */; };
 		D8A35774EC48AE27A5160066 /* NowPlayingCompactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A65FB2B5C27609361628349 /* NowPlayingCompactView.swift */; };
+		D8B0CB68656C3D65621C8A15 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923EEEB32DC30ED8D6C0164E /* AppSettings.swift */; };
 		D9FA732160BC3258DEDD99A7 /* IslandHitTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BBC4A5E841D8A674991CB5 /* IslandHitTestTests.swift */; };
 		DA857F9519A975F4AEA16D60 /* AgentsModuleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969626E00671B10D9BD56EE0 /* AgentsModuleController.swift */; };
 		DB1ABD8D66E79C436F0EC793 /* ScreenshotBufferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A5E94DACF8674841DA7D4 /* ScreenshotBufferView.swift */; };
@@ -153,6 +155,7 @@
 		545010F089E91F738FA59429 /* PersonalIsland.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PersonalIsland.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		562801A55EE50D0C76365495 /* MediaTimeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTimeFormatter.swift; sourceTree = "<group>"; };
 		56E5514E3204F276230079E8 /* AttentionPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttentionPersistence.swift; sourceTree = "<group>"; };
+		57FB88BF9B3E75D57143F7B0 /* AppSettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsTests.swift; sourceTree = "<group>"; };
 		58571834CB4FB9699FB8ECB3 /* AgentEventReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentEventReceiver.swift; sourceTree = "<group>"; };
 		593685BFD2EADEE48BBAECBB /* ScreenshotDragPayloadBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotDragPayloadBuilder.swift; sourceTree = "<group>"; };
 		5B07086DBD52A97AB9AFA30B /* NowPlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
@@ -174,6 +177,7 @@
 		8C4D77AC9E97FB79BF75E758 /* AppLanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLanguageManager.swift; sourceTree = "<group>"; };
 		8DF3BF2FBEBA225F8CC8BB75 /* IslandWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IslandWindowController.swift; sourceTree = "<group>"; };
 		91508EEEC0052E2889A620E1 /* AgentHookInstaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentHookInstaller.swift; sourceTree = "<group>"; };
+		923EEEB32DC30ED8D6C0164E /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		92886647D2E593426068F988 /* MediaRemoteAdapterTestClient */ = {isa = PBXFileReference; path = MediaRemoteAdapterTestClient; sourceTree = "<group>"; };
 		931CF95A7034F999354B4CA2 /* ScreenshotBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotBuffer.swift; sourceTree = "<group>"; };
 		96333B43336A192CA6F3F771 /* NowPlayingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingCoordinator.swift; sourceTree = "<group>"; };
@@ -277,6 +281,7 @@
 				DC3570A3946C950ED0E869A8 /* AgentActionsTests.swift */,
 				3AFEFB80497AF4D30DC80AD6 /* AgentBridgeTests.swift */,
 				CA5F80398DD7D009165A9F64 /* AgentStoreTests.swift */,
+				57FB88BF9B3E75D57143F7B0 /* AppSettingsTests.swift */,
 				EEFF828D9B31B666A16CEB36 /* AttentionStoreTests.swift */,
 				F82EDB2A2FB130BABC70A2DF /* BrowserMediaTests.swift */,
 				AD084CDF8682851C7B089003 /* CodexLocalProviderTests.swift */,
@@ -439,6 +444,7 @@
 		F2216FABEE169C1605EDB7CA /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				923EEEB32DC30ED8D6C0164E /* AppSettings.swift */,
 				7390018D5C0BF8DB1A1FA9DE /* Constants.swift */,
 				34F7EE31934C87937921FB29 /* Components */,
 				C3E3B3E48AC62495F6657704 /* Localization */,
@@ -594,6 +600,7 @@
 				6A0BF0D95F7553D8221FC49E /* AgentActionsTests.swift in Sources */,
 				B47155BF2F0404C5E1EA7C40 /* AgentBridgeTests.swift in Sources */,
 				CDCB26C8BF9ACA457B1E044F /* AgentStoreTests.swift in Sources */,
+				C198E3B8A0D627BFF9154B07 /* AppSettingsTests.swift in Sources */,
 				2F8B72F4069FB7156E62A5B2 /* AttentionStoreTests.swift in Sources */,
 				B01BA9AFAF7594259CC042C9 /* BrowserMediaTests.swift in Sources */,
 				24723C24292B7E80C6343EBE /* CodexLocalProviderTests.swift in Sources */,
@@ -631,6 +638,7 @@
 				DA857F9519A975F4AEA16D60 /* AgentsModuleController.swift in Sources */,
 				BE324519F16A547E103ED525 /* AppDelegate.swift in Sources */,
 				4915C9EDD4B67E16FE958504 /* AppLanguageManager.swift in Sources */,
+				D8B0CB68656C3D65621C8A15 /* AppSettings.swift in Sources */,
 				9490A84D346B4CCD916B9DE3 /* AppState.swift in Sources */,
 				87BE911FB1198EACE6D34C20 /* ArcBrowserNowPlayingProvider.swift in Sources */,
 				7FCD58A07D27E11FE37DFAE3 /* AttentionCenterView.swift in Sources */,

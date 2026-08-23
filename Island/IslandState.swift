@@ -41,6 +41,8 @@ final class IslandState: ObservableObject {
     let registry: ModuleRegistry
 
     private let hoverPolicy: IslandHoverPolicy
+    var livePolicy: (() -> IslandHoverPolicy)?
+    var hoverOpenProvider: (() -> Bool)?
     private var hoverExpandWork: DispatchWorkItem?
     private var hoverCollapseWork: DispatchWorkItem?
 
@@ -100,8 +102,23 @@ final class IslandState: ObservableObject {
         expand()
     }
 
+    private var effectiveHoverPolicy: IslandHoverPolicy {
+        livePolicy?() ?? hoverPolicy
+    }
+
+    private var isHoverOpenEnabled: Bool {
+        hoverOpenProvider?() ?? true
+    }
+
     func hoverChanged(_ hovering: Bool) {
         isHovering = hovering
+        guard isHoverOpenEnabled else {
+            hoverExpandWork?.cancel()
+            hoverExpandWork = nil
+            hoverCollapseWork?.cancel()
+            hoverCollapseWork = nil
+            return
+        }
         if hovering {
             hoverCollapseWork?.cancel()
             hoverCollapseWork = nil
@@ -113,7 +130,9 @@ final class IslandState: ObservableObject {
                 self.handleIslandTap()
             }
             hoverExpandWork = work
-            DispatchQueue.main.asyncAfter(deadline: .now() + hoverPolicy.expandDelay, execute: work)
+            DispatchQueue.main.asyncAfter(
+                deadline: .now() + effectiveHoverPolicy.expandDelay, execute: work
+            )
         } else {
             hoverExpandWork?.cancel()
             hoverExpandWork = nil
@@ -123,6 +142,7 @@ final class IslandState: ObservableObject {
     }
 
     private func scheduleHoverCollapse() {
+        guard isHoverOpenEnabled else { return }
         hoverCollapseWork?.cancel()
         let work = DispatchWorkItem { [weak self] in
             guard let self else { return }
@@ -131,7 +151,9 @@ final class IslandState: ObservableObject {
             self.dismissExpanded()
         }
         hoverCollapseWork = work
-        DispatchQueue.main.asyncAfter(deadline: .now() + hoverPolicy.collapseGrace, execute: work)
+        DispatchQueue.main.asyncAfter(
+            deadline: .now() + effectiveHoverPolicy.collapseGrace, execute: work
+        )
     }
 
     private func observeDragActivity() {

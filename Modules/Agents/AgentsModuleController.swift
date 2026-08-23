@@ -51,6 +51,9 @@ final class AgentsModuleController: ObservableObject {
         AttentionStore.shared.notificationRequests
             .receive(on: DispatchQueue.main)
             .sink { [weak self] item in
+                guard AppSettings.shared.allowsNotification(
+                    kind: item.kind, provider: item.provider
+                ) else { return }
                 self?.notifications.post(item: item)
             }
             .store(in: &cancellables)

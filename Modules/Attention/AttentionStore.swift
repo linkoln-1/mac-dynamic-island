@@ -17,6 +17,7 @@ final class AttentionStore: ObservableObject {
     let notificationRequests = PassthroughSubject<AttentionItem, Never>()
 
     private let policy: Policy
+    var liveMaxAge: (() -> TimeInterval)?
     private let persistence: AttentionPersistence
     private let now: () -> Date
     private var persistWork: DispatchWorkItem?
@@ -131,8 +132,9 @@ final class AttentionStore: ObservableObject {
 
     private func applyRetention() {
         let moment = now()
+        let maxAge = liveMaxAge?() ?? policy.maxAge
         var kept = items.values.filter { item in
-            item.isActionableHigh || moment.timeIntervalSince(item.updatedAt) <= policy.maxAge
+            item.isActionableHigh || moment.timeIntervalSince(item.updatedAt) <= maxAge
         }
         if kept.count > policy.maxItems {
             let protected = kept.filter { $0.isActionableHigh }

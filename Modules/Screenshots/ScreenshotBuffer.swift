@@ -46,6 +46,7 @@ final class ScreenshotBuffer: ObservableObject {
     @Published private(set) var items: [ScreenshotItem] = []
 
     let maxItems: Int
+    var liveLimit: (() -> Int)?
     private let fileRemover: ScreenshotFileRemoving
 
     init(
@@ -100,7 +101,8 @@ final class ScreenshotBuffer: ObservableObject {
     }
 
     private func evictOverflow() {
-        while items.count > maxItems {
+        let limit = liveLimit?() ?? maxItems
+        while items.count > limit {
             guard let index = items.lastIndex(where: { !$0.isPinned }) else { return }
             let evicted = items.remove(at: index)
             deleteCacheCopyIfOwned(evicted)

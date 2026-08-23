@@ -21,6 +21,16 @@ final class AppState: ObservableObject {
         guard !isStarted else { return }
         isStarted = true
 
+        islandState.livePolicy = { AppSettings.shared.hoverPolicy }
+        islandState.hoverOpenProvider = { AppSettings.shared.hoverOpenEnabled }
+        AttentionStore.shared.liveMaxAge = { AppSettings.shared.attentionRetentionDays * 86400 }
+        AgentsModuleController.shared.store.liveFinishedRetention = {
+            AppSettings.shared.agentAutoClearSeconds
+        }
+        ScreenshotsModuleController.shared.buffer.liveLimit = {
+            AppSettings.shared.screenshotBufferLimit
+        }
+
         ScreenshotsModuleController.shared.activate()
 
         NowPlayingViewModel.shared.startIfNeeded()
