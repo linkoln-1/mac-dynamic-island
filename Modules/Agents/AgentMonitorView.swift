@@ -118,15 +118,41 @@ struct AgentMonitorView: View {
         return Button {
             controller.providerFilter = provider
         } label: {
-            Text(count > 0 && provider != nil ? "\(title) \(count)" : title)
-                .font(.system(size: 9, weight: isSelected ? .semibold : .regular))
-                .foregroundStyle(.white.opacity(isSelected ? 0.95 : 0.5))
-                .padding(.horizontal, 6)
-                .padding(.vertical, 2)
-                .background(Color.white.opacity(isSelected ? 0.16 : 0.0), in: Capsule())
-                .contentShape(Capsule())
+            HStack(spacing: 3) {
+                if let provider {
+                    providerTabIcon(provider)
+                        .opacity(isSelected ? 1.0 : 0.55)
+                } else {
+                    Text(title)
+                        .font(.system(size: 9, weight: isSelected ? .semibold : .regular))
+                }
+                if provider != nil, count > 0 {
+                    Text("\(count)")
+                        .font(.system(size: 9, weight: isSelected ? .semibold : .regular))
+                }
+            }
+            .foregroundStyle(.white.opacity(isSelected ? 0.95 : 0.5))
+            .padding(.horizontal, 6)
+            .padding(.vertical, 2)
+            .background(Color.white.opacity(isSelected ? 0.16 : 0.0), in: Capsule())
+            .contentShape(Capsule())
         }
         .buttonStyle(.plain)
+        .help(provider?.displayName ?? "All providers")
+    }
+
+    @ViewBuilder
+    private func providerTabIcon(_ provider: AgentProviderKind) -> some View {
+        if let icon = AgentProviderIconResolver.shared.icon(for: provider) {
+            Image(nsImage: icon)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 14, height: 14)
+        } else {
+            Image(systemName: "app.dashed")
+                .font(.system(size: 10))
+                .frame(width: 14, height: 14)
+        }
     }
 
     private var healthRow: some View {
