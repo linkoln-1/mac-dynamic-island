@@ -52,6 +52,7 @@
 		9490A84D346B4CCD916B9DE3 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAEA6868BA2472A960739434 /* AppState.swift */; };
 		98971FC055A47CF45581F6CF /* IslandRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8386C0FF7C82CCADE99EAE1 /* IslandRootView.swift */; };
 		996D738C3FAD9C8E71176FDA /* IslandContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75CFB091AE857EC44951A2D /* IslandContainer.swift */; };
+		998C708CE6E33B4A8503375E /* AppUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1271E2DB2EE80149BBDE4D96 /* AppUpdater.swift */; };
 		99CEB3E15B4710AD2E5DD0B9 /* AttentionPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E5514E3204F276230079E8 /* AttentionPersistence.swift */; };
 		9A71CBAD1ED8AEA7E3982724 /* MediaTimeFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F279889508523EB0020A30 /* MediaTimeFormatterTests.swift */; };
 		9E34FB3281FDA8ECF6368389 /* IslandPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4DC2BBBEDFDC10B710F8A7 /* IslandPanel.swift */; };
@@ -87,6 +88,7 @@
 		DFD3C7D0A43978820CF80C8D /* NowPlayingProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CB9F001701705FFCDDA54 /* NowPlayingProvider.swift */; };
 		E07BAADB7A6019CD3ED1F277 /* ScreenshotCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771F2405F68471A34C1EDC8C /* ScreenshotCard.swift */; };
 		E5DD227F5264A016410F64AA /* ModuleDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074FFB0D820A6E40597E389 /* ModuleDefinition.swift */; };
+		E6B7224BC7F5F50B02333665 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 5CCBB1C76C78699C1450CFBF /* Sparkle */; };
 		E75A58B0C6752BFFE156D6CF /* FocusOwnershipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA367A331B5764CF5CAF655E /* FocusOwnershipTests.swift */; };
 		EA6E8559917CC4AF05DA80D3 /* IslandHitTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B94DC8A1FDA00EC675E6E /* IslandHitTestView.swift */; };
 		FBFDFB0E6E7EF21EC846CD89 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77612D99353C8BFC948A9A89 /* Log.swift */; };
@@ -130,6 +132,7 @@
 		0D4D58586908CBB58887FA52 /* AgentActionMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentActionMenuButton.swift; sourceTree = "<group>"; };
 		0F8DDD176CC9A052A03D5029 /* IslandSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IslandSidebar.swift; sourceTree = "<group>"; };
 		10CDC3ED8890184772C64D57 /* NotchSpaceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchSpaceManager.swift; sourceTree = "<group>"; };
+		1271E2DB2EE80149BBDE4D96 /* AppUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdater.swift; sourceTree = "<group>"; };
 		160845716973AC8225557AC1 /* AgentMonitorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentMonitorView.swift; sourceTree = "<group>"; };
 		1FEF7A5058C7B5ACF4DAA964 /* AttentionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttentionModel.swift; sourceTree = "<group>"; };
 		20A02AC28791AEE5B87CE8C1 /* ScreenshotDirectoryMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotDirectoryMonitor.swift; sourceTree = "<group>"; };
@@ -214,6 +217,17 @@
 		F8386C0FF7C82CCADE99EAE1 /* IslandRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IslandRootView.swift; sourceTree = "<group>"; };
 		F93BE3004118354F89DEFEB3 /* IslandHoverOpenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IslandHoverOpenTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7716AD043B30C7B9087756EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6B7224BC7F5F50B02333665 /* Sparkle in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		15C3E05B10F0828F1C45B3A4 /* AgentHookHelper */ = {
@@ -382,6 +396,7 @@
 			children = (
 				6F24EE472D466F25063729E3 /* AppDelegate.swift */,
 				DAEA6868BA2472A960739434 /* AppState.swift */,
+				1271E2DB2EE80149BBDE4D96 /* AppUpdater.swift */,
 				2BF3FAC982606BEFEA1A3522 /* PersonalIslandApp.swift */,
 			);
 			path = App;
@@ -497,6 +512,7 @@
 			buildPhases = (
 				68BF90BCE997E62CFAED2DD4 /* Sources */,
 				70356466BA16D8C63EBD4F1C /* Resources */,
+				7716AD043B30C7B9087756EE /* Frameworks */,
 				A9A67262CA21EBEC3E5DCFA3 /* Embed Frameworks */,
 				9395AB116319CFD442DE2539 /* Embed agent hook helper */,
 			);
@@ -507,6 +523,7 @@
 			);
 			name = PersonalIsland;
 			packageProductDependencies = (
+				5CCBB1C76C78699C1450CFBF /* Sparkle */,
 			);
 			productName = PersonalIsland;
 			productReference = 545010F089E91F738FA59429 /* PersonalIsland.app */;
@@ -545,6 +562,9 @@
 			);
 			mainGroup = 26082039F3D40EB0A31750B4;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				6FF50C6F19DF491A4BC44CFC /* XCRemoteSwiftPackageReference "Sparkle" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 1B296D2B8DC1D3D4D9247324 /* Products */;
 			projectDirPath = "";
@@ -640,6 +660,7 @@
 				4915C9EDD4B67E16FE958504 /* AppLanguageManager.swift in Sources */,
 				D8B0CB68656C3D65621C8A15 /* AppSettings.swift in Sources */,
 				9490A84D346B4CCD916B9DE3 /* AppState.swift in Sources */,
+				998C708CE6E33B4A8503375E /* AppUpdater.swift in Sources */,
 				87BE911FB1198EACE6D34C20 /* ArcBrowserNowPlayingProvider.swift in Sources */,
 				7FCD58A07D27E11FE37DFAE3 /* AttentionCenterView.swift in Sources */,
 				C1CED32DBFC47AC551AAB708 /* AttentionModel.swift in Sources */,
@@ -986,6 +1007,25 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6FF50C6F19DF491A4BC44CFC /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5CCBB1C76C78699C1450CFBF /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6FF50C6F19DF491A4BC44CFC /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EB7E781DC29459EE4E78AA4C /* Project object */;
 }

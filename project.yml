@@ -10,11 +10,18 @@ settings:
     CODE_SIGN_IDENTITY: "-"
     CODE_SIGN_STYLE: Manual
     DEVELOPMENT_TEAM: ""
+packages:
+  Sparkle:
+    url: https://github.com/sparkle-project/Sparkle
+    from: 2.6.0
 targets:
   PersonalIsland:
     type: application
     platform: macOS
     deploymentTarget: "15.0"
+    settings:
+      base:
+        CODE_SIGN_ENTITLEMENTS: Support/PersonalIsland.entitlements
     sources:
       - App
       - Island
@@ -25,6 +32,7 @@ targets:
       - path: Vendor/MediaRemoteAdapter/MediaRemoteAdapterTestClient
         buildPhase: resources
     dependencies:
+      - package: Sparkle
       - target: PersonalIslandAgentHook
         embed: false
       - framework: Vendor/MediaRemoteAdapter/MediaRemoteAdapter.framework

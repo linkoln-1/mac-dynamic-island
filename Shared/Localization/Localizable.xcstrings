@@ -672,6 +672,13 @@
         } } }
       }
     },
+    "menu.checkUpdates" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Check for Updates…" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Проверить обновления…" } }
+      }
+    },
     "menu.quit" : {
       "extractionState" : "manual",
       "localizations" : {

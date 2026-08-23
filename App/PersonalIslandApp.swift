@@ -37,6 +37,9 @@ struct MenuBarContentView: View {
         SettingsLink {
             Text(lang.string("menu.settings"))
         }
+        Button(lang.string("menu.checkUpdates")) {
+            AppUpdater.shared.checkForUpdates()
+        }
         Divider()
         Button(lang.string("menu.quit")) {
             NSApp.terminate(nil)
