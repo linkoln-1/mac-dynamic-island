@@ -36,6 +36,7 @@ struct AgentSession: Identifiable, Equatable {
     var sessionID: String
     var project: String
     var branch: String?
+    var projectPath: String?
 
     var state: AgentSessionState = .idle
     var activity: String = ""
@@ -68,18 +69,18 @@ struct AgentSession: Identifiable, Equatable {
 }
 
 final class AgentProjectResolver {
-    private var cache: [String: (project: String, branch: String?)] = [:]
+    private var cache: [String: (project: String, branch: String?, rootPath: String)] = [:]
 
-    func resolve(cwd: String?) -> (project: String, branch: String?) {
-        guard let cwd, !cwd.isEmpty else { return ("Unknown", nil) }
+    func resolve(cwd: String?) -> (project: String, branch: String?, rootPath: String?) {
+        guard let cwd, !cwd.isEmpty else { return ("Unknown", nil, nil) }
         if let cached = cache[cwd] { return cached }
 
-        var result: (String, String?) = ((cwd as NSString).lastPathComponent, nil)
+        var result: (String, String?, String) = ((cwd as NSString).lastPathComponent, nil, cwd)
         var directory = URL(fileURLWithPath: cwd)
         for _ in 0..<12 {
             let gitURL = directory.appendingPathComponent(".git")
             if FileManager.default.fileExists(atPath: gitURL.path) {
-                result = (directory.lastPathComponent, Self.branch(gitURL: gitURL))
+                result = (directory.lastPathComponent, Self.branch(gitURL: gitURL), directory.path)
                 break
             }
             let parent = directory.deletingLastPathComponent()

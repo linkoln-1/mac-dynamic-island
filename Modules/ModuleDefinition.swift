@@ -28,7 +28,8 @@ final class ModuleRegistry: ObservableObject {
     let modules: [any IslandModule]
 
     init(modules: [any IslandModule]? = nil) {
-        self.modules = modules ?? [ScreenshotBufferModule(), NowPlayingModule(), AgentsModule()]
+        self.modules = modules
+            ?? [ScreenshotBufferModule(), NowPlayingModule(), AgentsModule(), AttentionModule()]
     }
 
     func module(withID id: String) -> (any IslandModule)? {
@@ -61,6 +62,16 @@ struct AgentsModule: IslandModule {
 
     func makeContent() -> AnyView {
         AnyView(AgentMonitorView())
+    }
+}
+
+struct AttentionModule: IslandModule {
+    let id = "attention"
+    let title = "Attention"
+    let systemImage = "bell.badge"
+
+    func makeContent() -> AnyView {
+        AnyView(AttentionCenterView())
     }
 }
 

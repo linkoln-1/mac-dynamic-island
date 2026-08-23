@@ -4,6 +4,7 @@ import SwiftUI
 struct ScreenshotBufferView: View {
     @ObservedObject private var buffer: ScreenshotBuffer
     @ObservedObject private var viewModel: ScreenshotBufferViewModel
+    @ObservedObject private var lang = AppLanguageManager.shared
 
     private static let gridSpacing: CGFloat = 8
 
@@ -51,13 +52,13 @@ struct ScreenshotBufferView: View {
 
     private var selectionFooter: some View {
         HStack(spacing: 10) {
-            Text("Selected: \(viewModel.selectedIDs.count)")
+            Text(lang.format("screenshots.selected", viewModel.selectedIDs.count))
                 .font(.caption)
                 .foregroundStyle(.white.opacity(0.7))
             Spacer()
-            footerButton("Copy") { viewModel.copySelected() }
-            footerButton("Remove from Buffer") { viewModel.removeSelected() }
-            footerButton("Clear Selection") { viewModel.clearSelection() }
+            footerButton(lang.string("screenshots.copy")) { viewModel.copySelected() }
+            footerButton(lang.string("screenshots.remove")) { viewModel.removeSelected() }
+            footerButton(lang.string("screenshots.clearSelection")) { viewModel.clearSelection() }
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 6)
@@ -79,7 +80,7 @@ struct ScreenshotBufferView: View {
             Image(systemName: "photo.on.rectangle")
                 .font(.system(size: 28))
                 .foregroundStyle(.white.opacity(0.35))
-            Text("Take a screenshot (⌘⇧3 / ⌘⇧4)\nor copy an image — it appears here.")
+            Text(lang.string("screenshots.empty"))
                 .font(.caption)
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.white.opacity(0.5))

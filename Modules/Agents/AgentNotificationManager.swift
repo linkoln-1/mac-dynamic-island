@@ -27,12 +27,17 @@ final class SystemNotificationPoster: AgentNotificationPosting {
 @MainActor
 final class AgentNotificationManager {
     private let poster: AgentNotificationPosting
+    private let localization: AppLanguageManager
     private var sentKeys: Set<String> = []
     private(set) var isAuthorized = false
     private var didRequestAuthorization = false
 
-    init(poster: AgentNotificationPosting = SystemNotificationPoster()) {
+    init(
+        poster: AgentNotificationPosting = SystemNotificationPoster(),
+        localization: AppLanguageManager = .shared
+    ) {
         self.poster = poster
+        self.localization = localization
     }
 
     func requestAuthorizationIfNeeded() {
@@ -42,6 +47,20 @@ final class AgentNotificationManager {
             self?.isAuthorized = granted
             Log.agentNotifications.info("notification authorization granted=\(granted)")
         }
+    }
+
+    func post(item: AttentionItem) {
+        guard !sentKeys.contains(item.dedupKey) else { return }
+        sentKeys.insert(item.dedupKey)
+        if sentKeys.count > 4000 { sentKeys.removeAll() }
+
+        poster.post(
+            title: "\(item.provider.displayName) · \(item.projectName)",
+            subtitle: "\(item.sessionAlias) · \(AttentionPresentation.kindLabel(item.kind, lang: localization))",
+            body: AttentionPresentation.detail(item, lang: localization),
+            thread: item.relatedAgentSessionID,
+            identifier: item.dedupKey
+        )
     }
 
     func handle(_ transition: AgentTransition) {

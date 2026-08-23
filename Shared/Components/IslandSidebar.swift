@@ -2,6 +2,8 @@ import SwiftUI
 
 struct IslandSidebar: View {
     @ObservedObject var state: IslandState
+    @ObservedObject private var attention = AttentionStore.shared
+    @ObservedObject private var lang = AppLanguageManager.shared
 
     var body: some View {
 
@@ -10,8 +12,11 @@ struct IslandSidebar: View {
                 let module = state.registry.modules[index]
                 ModuleButton(
                     systemImage: module.systemImage,
-                    title: module.title,
-                    isSelected: module.id == state.selectedModuleID
+                    title: lang.string("module.\(module.id).title"),
+                    isSelected: module.id == state.selectedModuleID,
+                    badgeLabel: module.id == "attention"
+                        ? AttentionBadgeFormatter.label(attention.unreadCount) : nil,
+                    badgeIsUrgent: attention.highPriorityUnreadCount > 0
                 ) {
                     state.select(moduleID: module.id)
                 }

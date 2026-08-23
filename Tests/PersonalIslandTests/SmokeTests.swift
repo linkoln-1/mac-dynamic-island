@@ -3,14 +3,18 @@ import XCTest
 
 final class SmokeTests: XCTestCase {
     @MainActor
-    func testModuleRegistryHasExactlyThreeModulesInOrder() {
+    func testModuleRegistryHasExactlyFourModulesInOrder() {
         let registry = ModuleRegistry()
 
-        XCTAssertEqual(registry.modules.count, 3)
-        XCTAssertEqual(registry.modules.map { $0.id }, ["screenshots", "nowPlaying", "agents"])
+        XCTAssertEqual(registry.modules.count, 4)
+        XCTAssertEqual(
+            registry.modules.map { $0.id },
+            ["screenshots", "nowPlaying", "agents", "attention"]
+        )
         XCTAssertTrue(registry.modules[0] is ScreenshotBufferModule)
         XCTAssertTrue(registry.modules[1] is NowPlayingModule)
         XCTAssertTrue(registry.modules[2] is AgentsModule)
+        XCTAssertTrue(registry.modules[3] is AttentionModule)
     }
 
     @MainActor

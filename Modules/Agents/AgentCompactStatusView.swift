@@ -2,6 +2,7 @@ import SwiftUI
 
 struct AgentCompactStatusView: View {
     @ObservedObject private var store = AgentsModuleController.shared.store
+    @ObservedObject private var attention = AttentionStore.shared
     @Environment(\.notchGapWidth) private var notchGapWidth
 
     var body: some View {
@@ -22,9 +23,7 @@ struct AgentCompactStatusView: View {
                             .foregroundStyle(.white.opacity(0.8))
                     }
                 }
-                if summary.attention > 0 {
-                    attentionBadge(summary.attention)
-                }
+                CompactAttentionBadge(count: attention.highPriorityUnreadCount, iconSize: 9)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
@@ -43,30 +42,46 @@ struct AgentCompactStatusView: View {
         }
     }
 
-    private func attentionBadge(_ count: Int) -> some View {
-        HStack(spacing: 3) {
-            Image(systemName: "exclamationmark.triangle.fill")
-                .font(.system(size: 9))
-            Text("\(count)")
-                .font(.system(size: 10, weight: .bold))
+}
+
+struct CompactAttentionBadge: View {
+    let count: Int
+    let iconSize: CGFloat
+    @ObservedObject private var lang = AppLanguageManager.shared
+
+    var body: some View {
+        if let label = AttentionBadgeFormatter.label(count) {
+            Button {
+                NotificationCenter.default.post(
+                    name: .islandNavigateToModule, object: nil,
+                    userInfo: ["moduleID": "attention"]
+                )
+            } label: {
+                HStack(spacing: 3) {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .font(.system(size: iconSize))
+                    Text(label)
+                        .font(.system(size: iconSize + 1, weight: .bold))
+                }
+                .foregroundStyle(.yellow)
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            .help(lang.string("attention.badge.help"))
+            .accessibilityLabel(lang.string("attention.badge.help"))
         }
-        .foregroundStyle(.yellow)
     }
 }
 
 struct AgentMicroClusterView: View {
     @ObservedObject private var store = AgentsModuleController.shared.store
+    @ObservedObject private var attention = AttentionStore.shared
 
     var body: some View {
         let summary = store.compactSummary
         HStack(spacing: 4) {
-            if summary.attention > 0 {
-                Image(systemName: "exclamationmark.triangle.fill")
-                    .font(.system(size: 8))
-                    .foregroundStyle(.yellow)
-                Text("\(summary.attention)")
-                    .font(.system(size: 9, weight: .bold))
-                    .foregroundStyle(.yellow)
+            if attention.highPriorityUnreadCount > 0 {
+                CompactAttentionBadge(count: attention.highPriorityUnreadCount, iconSize: 8)
             } else {
                 if summary.claudeActive > 0 {
                     AgentProviderIconView(provider: .claude, size: 12)
@@ -108,18 +123,24 @@ struct AgentProviderIconView: View {
 struct CompactSurfaceView: View {
     @ObservedObject private var media = NowPlayingViewModel.shared
     @ObservedObject private var agents = AgentsModuleController.shared.store
+    @ObservedObject private var attention = AttentionStore.shared
     @Environment(\.notchGapWidth) private var notchGapWidth
 
     static let microZoneWidth: CGFloat = 56
 
     var body: some View {
-        if !media.state.isEmpty {
+        let plan = CompactSurfacePlan.plan(
+            hasMedia: !media.state.isEmpty,
+            hasAgentSummary: !agents.compactSummary.isEmpty,
+            highPriorityCount: attention.highPriorityUnreadCount
+        )
+        if plan.showsMedia {
             HStack(spacing: 0) {
-                if showMicroCluster {
+                if plan.showsMicroCluster {
                     Color.clear.frame(width: Self.microZoneWidth)
                 }
                 NowPlayingCompactView()
-                if showMicroCluster {
+                if plan.showsMicroCluster {
                     AgentMicroClusterView()
                         .frame(width: Self.microZoneWidth, alignment: .trailing)
                         .padding(.trailing, 2)
@@ -128,9 +149,5 @@ struct CompactSurfaceView: View {
         } else {
             AgentCompactStatusView()
         }
-    }
-
-    private var showMicroCluster: Bool {
-        !agents.compactSummary.isEmpty
     }
 }

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct NowPlayingView: View {
     @ObservedObject private var model: NowPlayingViewModel
+    @ObservedObject private var lang = AppLanguageManager.shared
 
     @State private var scrubFraction: Double?
 
@@ -28,12 +29,12 @@ struct NowPlayingView: View {
             Image(systemName: "music.note")
                 .font(.system(size: 28))
                 .foregroundStyle(.white.opacity(0.35))
-            Text("Nothing Playing")
+            Text(lang.string("media.nothingPlaying"))
                 .font(.callout)
                 .foregroundStyle(.white.opacity(0.6))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .accessibilityLabel("Nothing playing")
+        .accessibilityLabel(lang.string("media.nothingPlaying"))
     }
 
     private var player: some View {
@@ -103,7 +104,7 @@ struct NowPlayingView: View {
             MediaControlButton(
                 systemImage: "backward.fill",
                 size: 14,
-                label: "Previous track",
+                label: lang.string("media.previous"),
                 hitTarget: IslandMetrics.expandedControlHitTarget
             ) {
                 model.previousTrack()
@@ -113,7 +114,7 @@ struct NowPlayingView: View {
             MediaControlButton(
                 systemImage: model.state.isPlaying ? "pause.fill" : "play.fill",
                 size: 20,
-                label: model.state.isPlaying ? "Pause" : "Play",
+                label: lang.string(model.state.isPlaying ? "media.pause" : "media.play"),
                 hitTarget: IslandMetrics.expandedControlHitTarget
             ) {
                 model.togglePlayPause()
@@ -121,7 +122,7 @@ struct NowPlayingView: View {
             MediaControlButton(
                 systemImage: "forward.fill",
                 size: 14,
-                label: "Next track",
+                label: lang.string("media.next"),
                 hitTarget: IslandMetrics.expandedControlHitTarget
             ) {
                 model.nextTrack()
@@ -183,6 +184,7 @@ struct MediaControlButton: View {
         }
         .buttonStyle(.plain)
         .onHover { isHovering = $0 }
+        .help(label)
         .accessibilityLabel(label)
     }
 }
@@ -224,7 +226,7 @@ struct MediaSeekBar: View {
             )
         }
         .frame(height: Self.hitHeight)
-        .accessibilityLabel("Playback progress")
+        .accessibilityLabel(AppLanguageManager.shared.string("media.progress"))
         .accessibilityValue("\(Int(clamped(fraction) * 100)) percent")
     }
 

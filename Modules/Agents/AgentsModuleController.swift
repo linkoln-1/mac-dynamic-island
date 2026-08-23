@@ -20,17 +20,56 @@ final class AgentsModuleController: ObservableObject {
         claudeInstalled: false, codexInstalled: false, helperInstalled: false
     )
     @Published private(set) var lastEnableError: String?
+    @Published private(set) var highlightedSessionID: String?
+    @Published private(set) var codexLocalHealth: CodexLocalSessionProvider.Health = .inactive
 
+    private var codexProvider: CodexLocalSessionProvider?
+    private var hookSeenCodexSessions: Set<String> = []
+
+    private var highlightWork: DispatchWorkItem?
     private static let enabledDefaultsKey = "agentMonitoringEnabled"
 
     private init() {
         isEnabled = UserDefaults.standard.bool(forKey: Self.enabledDefaultsKey)
         store.transitions
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] transition in
-                self?.notifications.handle(transition)
+            .sink { transition in
+                guard let event = AgentAttentionMapper.event(for: transition) else { return }
+                AttentionStore.shared.publish(event)
             }
             .store(in: &cancellables)
+        store.resolutions
+            .receive(on: DispatchQueue.main)
+            .sink { resolution in
+                AttentionStore.shared.resolve(
+                    dedupKey: AgentAttentionMapper.permissionDedupKey(
+                        sessionID: resolution.session.id, cycleID: resolution.cycleID
+                    )
+                )
+            }
+            .store(in: &cancellables)
+        AttentionStore.shared.notificationRequests
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] item in
+                self?.notifications.post(item: item)
+            }
+            .store(in: &cancellables)
+    }
+
+    func navigateToSession(_ sessionID: String) {
+        guard store.sessions[sessionID] != nil else { return }
+        providerFilter = nil
+        highlightedSessionID = sessionID
+        highlightWork?.cancel()
+        let work = DispatchWorkItem { [weak self] in
+            self?.highlightedSessionID = nil
+            self?.highlightWork = nil
+        }
+        highlightWork = work
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.6, execute: work)
+        NotificationCenter.default.post(
+            name: .islandNavigateToModule, object: nil, userInfo: ["moduleID": "agents"]
+        )
     }
 
     func activateIfEnabled() {
@@ -67,9 +106,23 @@ final class AgentsModuleController: ObservableObject {
 
     private func startRuntime() {
         receiver.onEvent = { [weak self] event in
+            if event.provider == .codex {
+                self?.hookSeenCodexSessions.insert(event.sessionID)
+            }
             self?.store.ingest(event)
         }
         receiver.start()
+        if codexProvider == nil {
+            let provider = CodexLocalSessionProvider { [weak self] events in
+                for event in events { self?.store.ingest(event) }
+            }
+            provider.isHookAuthority = { [weak self] sessionID in
+                self?.hookSeenCodexSessions.contains(sessionID) ?? false
+            }
+            provider.start()
+            codexProvider = provider
+            codexLocalHealth = provider.health
+        }
         if sweepTimer == nil {
 
             let timer = Timer(timeInterval: 10, repeats: true) { _ in
@@ -82,6 +135,8 @@ final class AgentsModuleController: ObservableObject {
 
     func shutdown() {
         receiver.stop()
+        codexProvider?.stop()
+        codexProvider = nil
         sweepTimer?.invalidate()
         sweepTimer = nil
     }

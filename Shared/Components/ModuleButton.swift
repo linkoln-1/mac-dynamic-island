@@ -4,6 +4,8 @@ struct ModuleButton: View {
     let systemImage: String
     let title: String
     let isSelected: Bool
+    var badgeLabel: String?
+    var badgeIsUrgent: Bool = false
     let action: () -> Void
 
     @State private var isHovering = false
@@ -17,6 +19,19 @@ struct ModuleButton: View {
                 Image(systemName: systemImage)
                     .font(.system(size: 15, weight: .medium))
                     .foregroundStyle(isSelected ? Color.white : Color.white.opacity(0.55))
+                if let badgeLabel {
+                    Text(badgeLabel)
+                        .font(.system(size: 8, weight: .bold))
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 3)
+                        .frame(minWidth: 12)
+                        .frame(height: 12)
+                        .background(
+                            badgeIsUrgent ? Color.red.opacity(0.9) : Color.white.opacity(0.25),
+                            in: Capsule()
+                        )
+                        .offset(x: 12, y: -11)
+                }
             }
 
             .frame(

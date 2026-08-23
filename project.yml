@@ -1,5 +1,6 @@
 name: PersonalIsland
 options:
+  developmentLanguage: en
   createIntermediateGroups: true
   deploymentTarget:
     macOS: "15.0"

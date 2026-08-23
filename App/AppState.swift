@@ -27,19 +27,26 @@ final class AppState: ObservableObject {
 
         AgentsModuleController.shared.activateIfEnabled()
 
-        Publishers.CombineLatest(
+        Publishers.CombineLatest3(
             NowPlayingViewModel.shared.$state.map { !$0.isEmpty }.removeDuplicates(),
             AgentsModuleController.shared.store.$sessions
                 .map { _ in AgentsModuleController.shared.store.compactSummary }
+                .removeDuplicates(),
+            AttentionStore.shared.$items
+                .map { _ in AttentionStore.shared.highPriorityUnreadCount }
                 .removeDuplicates()
         )
-        .sink { [weak self] hasMedia, agentSummary in
+        .sink { [weak self] hasMedia, agentSummary, highPriorityCount in
             guard let self else { return }
-            let hasAgents = !agentSummary.isEmpty
+            let plan = CompactSurfacePlan.plan(
+                hasMedia: hasMedia,
+                hasAgentSummary: !agentSummary.isEmpty,
+                highPriorityCount: highPriorityCount
+            )
             self.islandState.compactWidthBonus =
-                (hasMedia && hasAgents) ? CompactSurfaceView.microZoneWidth * 2 : 0
-            self.islandState.compactShowsAgentsOnly = !hasMedia && hasAgents
-            self.islandState.setCompactAvailable(hasMedia || hasAgents)
+                plan.showsMicroCluster ? CompactSurfaceView.microZoneWidth * 2 : 0
+            self.islandState.compactShowsAgentsOnly = !plan.showsMedia && !plan.isEmpty
+            self.islandState.setCompactAvailable(!plan.isEmpty)
         }
         .store(in: &cancellables)
 

@@ -14,6 +14,11 @@ struct AgentTransition: Equatable {
     var dedupKey: String
 }
 
+struct AgentPermissionResolution: Equatable {
+    var session: AgentSession
+    var cycleID: Int
+}
+
 @MainActor
 final class AgentStore: ObservableObject {
     struct Policy {
@@ -30,6 +35,7 @@ final class AgentStore: ObservableObject {
     @Published private(set) var sessions: [String: AgentSession] = [:]
 
     let transitions = PassthroughSubject<AgentTransition, Never>()
+    let resolutions = PassthroughSubject<AgentPermissionResolution, Never>()
 
     private let policy: Policy
     private let now: () -> Date
@@ -67,6 +73,8 @@ final class AgentStore: ObservableObject {
         let moment = now()
         var session = sessions[key] ?? newSession(for: event, at: moment)
         session.lastActivityAt = moment
+        let previousState = session.state
+        let previousCycleID = session.cycleID
 
         switch event.event {
         case "SessionStart":
@@ -144,6 +152,10 @@ final class AgentStore: ObservableObject {
         }
 
         sessions[key] = session
+
+        if previousState == .needsPermission, session.state != .needsPermission {
+            resolutions.send(AgentPermissionResolution(session: session, cycleID: previousCycleID))
+        }
     }
 
     private func newSession(for event: AgentWireEvent, at moment: Date) -> AgentSession {
@@ -153,6 +165,7 @@ final class AgentStore: ObservableObject {
             sessionID: event.sessionID,
             project: resolved.project,
             branch: resolved.branch,
+            projectPath: resolved.rootPath,
             startedAt: moment,
             lastActivityAt: moment
         )

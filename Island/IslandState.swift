@@ -20,6 +20,7 @@ struct IslandHoverPolicy {
 extension Notification.Name {
     static let islandDragSessionBegan = Notification.Name("PIIslandDragSessionBegan")
     static let islandDragSessionEnded = Notification.Name("PIIslandDragSessionEnded")
+    static let islandNavigateToModule = Notification.Name("PIIslandNavigateToModule")
 }
 
 @MainActor
@@ -135,6 +136,17 @@ final class IslandState: ObservableObject {
 
     private func observeDragActivity() {
         let center = NotificationCenter.default
+        dragObservers.append(center.addObserver(
+            forName: .islandNavigateToModule, object: nil, queue: .main
+        ) { [weak self] note in
+            let moduleID = note.userInfo?["moduleID"] as? String
+            Task { @MainActor in
+                guard let self, let moduleID,
+                      self.registry.module(withID: moduleID) != nil else { return }
+                self.selectedModuleID = moduleID
+                self.expand()
+            }
+        })
         dragObservers.append(center.addObserver(
             forName: .islandDragSessionBegan, object: nil, queue: .main
         ) { [weak self] _ in

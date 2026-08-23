@@ -82,14 +82,14 @@ struct ScreenshotCard: View {
 
     private var menuEntries: [CardMenuEntry?] {
         [
-            CardMenuEntry(title: "Copy") { viewModel.copy(item) },
+            CardMenuEntry(title: AppLanguageManager.shared.string("screenshots.copy")) { viewModel.copy(item) },
             item.fileExists
-                ? CardMenuEntry(title: "Reveal in Finder") { viewModel.revealInFinder(item) }
+                ? CardMenuEntry(title: AppLanguageManager.shared.string("action.revealInFinder")) { viewModel.revealInFinder(item) }
                 : nil,
-            CardMenuEntry(title: "Open") { viewModel.open(item) },
-            CardMenuEntry(title: "Quick Look") { viewModel.showQuickLook(item) },
+            CardMenuEntry(title: AppLanguageManager.shared.string("screenshots.open")) { viewModel.open(item) },
+            CardMenuEntry(title: AppLanguageManager.shared.string("screenshots.quickLook")) { viewModel.showQuickLook(item) },
             CardMenuEntry(title: "-") {},
-            CardMenuEntry(title: "Remove from Buffer") { viewModel.remove(item) },
+            CardMenuEntry(title: AppLanguageManager.shared.string("screenshots.remove")) { viewModel.remove(item) },
         ]
     }
 }

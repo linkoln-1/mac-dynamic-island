@@ -3,6 +3,7 @@ import SwiftUI
 struct AgentMonitorView: View {
     @ObservedObject private var controller = AgentsModuleController.shared
     @ObservedObject private var store = AgentsModuleController.shared.store
+    @ObservedObject private var lang = AppLanguageManager.shared
 
     var body: some View {
         Group {
@@ -22,11 +23,11 @@ struct AgentMonitorView: View {
             Image(systemName: "cpu")
                 .font(.system(size: 26))
                 .foregroundStyle(.white.opacity(0.35))
-            Text("Monitor Claude Code and Codex sessions in real time.")
+            Text(lang.string("agent.setup.description"))
                 .font(.caption)
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.white.opacity(0.6))
-            Button("Enable Agent Monitoring") { controller.enable() }
+            Button(lang.string("agent.setup.enable")) { controller.enable() }
                 .buttonStyle(.borderedProminent)
                 .controlSize(.small)
             if let error = controller.lastEnableError {
@@ -45,7 +46,7 @@ struct AgentMonitorView: View {
             Image(systemName: "cpu")
                 .font(.system(size: 26))
                 .foregroundStyle(.white.opacity(0.35))
-            Text("No agent sessions yet.\nStart Claude Code or Codex — sessions appear here.")
+            Text(lang.string("agent.empty"))
                 .font(.caption)
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.white.opacity(0.5))
@@ -58,19 +59,28 @@ struct AgentMonitorView: View {
         store.orderedSessions(provider: controller.providerFilter)
     }
 
+    private var emptyFilterText: String {
+        if controller.providerFilter == .codex, controller.codexLocalHealth == .unavailable {
+            return lang.string("codex.health.unavailable")
+        }
+        return controller.providerFilter.map {
+            lang.format("agent.empty.provider", $0.displayName)
+        } ?? lang.string("agent.empty.any")
+    }
+
     private var sessionList: some View {
         VStack(spacing: 0) {
             HStack {
-                Text("AI Agents")
+                Text(lang.string("module.agents.title"))
                     .font(.system(size: 11, weight: .semibold))
                     .foregroundStyle(.white.opacity(0.7))
                 providerTabs
                 Spacer()
-                Text("\(filteredSessions.count) session\(filteredSessions.count == 1 ? "" : "s")")
+                Text(lang.plural("agent.sessions.count", filteredSessions.count))
                     .font(.system(size: 10))
                     .foregroundStyle(.white.opacity(0.45))
                 if store.hasInactiveSessions(provider: controller.providerFilter) {
-                    Button("Clear") { store.clearInactive(provider: controller.providerFilter) }
+                    Button(lang.string("agent.clear")) { store.clearInactive(provider: controller.providerFilter) }
                         .buttonStyle(.plain)
                         .font(.system(size: 9))
                         .foregroundStyle(.white.opacity(0.85))
@@ -78,13 +88,13 @@ struct AgentMonitorView: View {
                         .padding(.vertical, 2)
                         .background(Color.white.opacity(0.1), in: Capsule())
                         .contentShape(Capsule())
-                        .help("Remove finished and idle sessions")
+                        .help(lang.string("agent.clear.help"))
                 }
             }
             .padding(.horizontal, 10)
             .padding(.vertical, 5)
             if filteredSessions.isEmpty {
-                Text("No \(controller.providerFilter?.displayName ?? "agent") sessions.")
+                Text(emptyFilterText)
                     .font(.caption)
                     .foregroundStyle(.white.opacity(0.4))
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -92,7 +102,10 @@ struct AgentMonitorView: View {
                 ScrollView {
                     VStack(spacing: 5) {
                         ForEach(filteredSessions) { session in
-                            AgentSessionCard(session: session)
+                            AgentSessionCard(
+                                session: session,
+                                isHighlighted: controller.highlightedSessionID == session.id
+                            )
                         }
                     }
                     .padding(.horizontal, 8)
@@ -104,7 +117,7 @@ struct AgentMonitorView: View {
 
     private var providerTabs: some View {
         HStack(spacing: 3) {
-            providerTab(nil, title: "All")
+            providerTab(nil, title: lang.string("agent.tab.all"))
             ForEach(AgentProviderKind.allCases, id: \.self) { provider in
                 providerTab(provider, title: provider.displayName)
             }
@@ -138,7 +151,7 @@ struct AgentMonitorView: View {
             .contentShape(Capsule())
         }
         .buttonStyle(.plain)
-        .help(provider?.displayName ?? "All providers")
+        .help(provider?.displayName ?? lang.string("agent.tab.allProviders"))
     }
 
     @ViewBuilder
@@ -160,7 +173,7 @@ struct AgentMonitorView: View {
             healthBadge("Claude", ok: controller.health.claudeInstalled)
             healthBadge("Codex", ok: controller.health.codexInstalled)
             if !controller.health.claudeInstalled || !controller.health.codexInstalled {
-                Button("Repair") { controller.repair() }
+                Button(lang.string("agent.repair")) { controller.repair() }
                     .buttonStyle(.plain)
                     .font(.system(size: 9))
                     .foregroundStyle(.white.opacity(0.85))
@@ -185,7 +198,11 @@ struct AgentMonitorView: View {
 
 struct AgentSessionCard: View {
     let session: AgentSession
+    var isHighlighted: Bool = false
     @State private var isHovering = false
+    @ObservedObject private var lang = AppLanguageManager.shared
+
+    private static let projectActions = AgentProjectActions()
 
     var body: some View {
         HStack(spacing: 8) {
@@ -203,13 +220,13 @@ struct AgentSessionCard: View {
                 HStack(spacing: 5) {
                     stateBadge
                     if !session.activity.isEmpty, session.state == .working || session.state == .needsPermission {
-                        Text(session.activity)
+                        Text(ActivityPresentation.localize(session.activity, lang: lang))
                             .font(.system(size: 9))
                             .foregroundStyle(.white.opacity(0.6))
                             .lineLimit(1)
                     }
                     if session.subagentCount > 0 {
-                        Text("\(session.subagentCount) subagent\(session.subagentCount == 1 ? "" : "s")")
+                        Text(lang.plural("agent.subagents.count", session.subagentCount))
                             .font(.system(size: 8))
                             .foregroundStyle(.white.opacity(0.45))
                     }
@@ -217,12 +234,15 @@ struct AgentSessionCard: View {
             }
             Spacer(minLength: 4)
             durationLabel
+            if isHovering, Self.projectActions.isAvailable(path: session.projectPath) {
+                AgentActionMenuButton(projectPath: session.projectPath)
+            }
         }
         .padding(.horizontal, 8)
         .padding(.vertical, 5)
         .background(
             RoundedRectangle(cornerRadius: 7, style: .continuous)
-                .fill(Color.white.opacity(backgroundOpacity))
+                .fill(Color.white.opacity(isHighlighted ? 0.20 : backgroundOpacity))
         )
         .onHover { isHovering = $0 }
         .help("\(session.provider.displayName) · \(session.project)")
@@ -246,7 +266,7 @@ struct AgentSessionCard: View {
     private var stateBadge: some View {
         HStack(spacing: 3) {
             stateGlyph
-            Text(session.state.label)
+            Text(lang.string(session.state.localizationKey))
                 .font(.system(size: 9, weight: session.state == .needsPermission ? .bold : .medium))
         }
         .foregroundStyle(stateColor)

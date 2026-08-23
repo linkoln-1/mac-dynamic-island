@@ -2,6 +2,7 @@ import SwiftUI
 
 struct NowPlayingCompactView: View {
     @ObservedObject private var model: NowPlayingViewModel
+    @ObservedObject private var lang = AppLanguageManager.shared
     @Environment(\.notchGapWidth) private var notchGapWidth
 
     @MainActor
@@ -82,7 +83,7 @@ struct NowPlayingCompactView: View {
             MediaControlButton(
                 systemImage: "backward.fill",
                 size: 10,
-                label: "Previous track",
+                label: lang.string("media.previous"),
                 hitTarget: IslandMetrics.compactControlHitTarget
             ) {
                 model.previousTrack()
@@ -92,7 +93,7 @@ struct NowPlayingCompactView: View {
             MediaControlButton(
                 systemImage: model.state.isPlaying ? "pause.fill" : "play.fill",
                 size: 12,
-                label: model.state.isPlaying ? "Pause" : "Play",
+                label: lang.string(model.state.isPlaying ? "media.pause" : "media.play"),
                 hitTarget: IslandMetrics.compactControlHitTarget
             ) {
                 model.togglePlayPause()
@@ -100,7 +101,7 @@ struct NowPlayingCompactView: View {
             MediaControlButton(
                 systemImage: "forward.fill",
                 size: 10,
-                label: "Next track",
+                label: lang.string("media.next"),
                 hitTarget: IslandMetrics.compactControlHitTarget
             ) {
                 model.nextTrack()
