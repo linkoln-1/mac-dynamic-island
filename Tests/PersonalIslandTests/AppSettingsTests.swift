@@ -147,6 +147,12 @@ final class AppSettingsTests: XCTestCase {
         XCTAssertEqual(settings.orderedModuleIDs(all: all), ["a", "c", "b"])
     }
 
+    func testOnboardingFlagPreventsSecondShow() {
+        XCTAssertFalse(defaults.bool(forKey: OnboardingController.defaultsKey))
+        defaults.set(true, forKey: OnboardingController.defaultsKey)
+        XCTAssertFalse(OnboardingController.shared.showIfNeeded(defaults: defaults))
+    }
+
     func testScreenshotBufferUsesLiveLimit() {
         let buffer = ScreenshotBuffer(maxItems: 30)
         buffer.liveLimit = { 2 }

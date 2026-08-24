@@ -770,6 +770,48 @@
         "ru" : { "stringUnit" : { "state" : "translated", "value" : "Ниже" } }
       }
     },
+    "onboarding.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Welcome to PersonalIsland" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Добро пожаловать в PersonalIsland" } }
+      }
+    },
+    "onboarding.hover" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Move your pointer to the notch — the island opens on hover and closes when you leave." } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Наведите курсор на вырез экрана — остров раскроется сам и свернётся, когда вы уйдёте." } }
+      }
+    },
+    "onboarding.modules" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Five modules live in the sidebar: screenshots, media, AI agents, attention and clipboard history. Reorder them in Settings." } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "В сайдбаре пять модулей: скриншоты, музыка, AI-агенты, внимание и буфер обмена. Порядок меняется в Настройках." } }
+      }
+    },
+    "onboarding.agents" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open the AI Agents module and enable monitoring to watch Claude Code and Codex sessions in real time." } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Откройте модуль AI-агентов и включите мониторинг, чтобы видеть сессии Claude Code и Codex в реальном времени." } }
+      }
+    },
+    "onboarding.menubar" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "The ✦ icon in the menu bar holds language, settings and updates." } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Иконка ✦ в строке меню — язык, настройки и обновления." } }
+      }
+    },
+    "onboarding.start" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Get Started" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Начать" } }
+      }
+    },
     "menu.quit" : {
       "extractionState" : "manual",
       "localizations" : {

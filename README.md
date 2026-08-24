@@ -1,70 +1,76 @@
-# mac-dynamic-island
+<p align="center">
+  <img src="docs/assets/app-icon.png" width="128" alt="PersonalIsland icon" />
+</p>
 
-A Dynamic Island for the MacBook notch. A static borderless panel lives around
-the physical notch and expands on hover into a modular workspace.
+<h1 align="center">PersonalIsland</h1>
+
+<p align="center">
+  A Dynamic Island for the MacBook notch — with a real-time <b>AI agent monitor</b>
+  for Claude Code and Codex.
+</p>
+
+<p align="center">
+  <img src="docs/assets/island-compact.png" alt="Compact island around the notch: agent counts and working indicator" />
+  <br/><sub>Compact mode: one Claude Code and one Codex session working, right around the notch.</sub>
+</p>
+
+Rest your pointer on the notch and a black island unfolds — a modular workspace
+that stays out of your way and never steals keyboard focus from the app you're
+typing in.
 
 ## Modules
 
-- **Screenshot Buffer** — captures screenshots from the clipboard
-  (`⌘⇧3/4` with clipboard target) and from disk, keeps the last 30, supports
-  Finder-style multi-item drag-out into other apps. Originals are never deleted.
-- **Now Playing** — global media card (artwork, title, controls, seek) built on
-  the vendored `mediaremote-adapter` technique (Apple-signed `/usr/bin/perl`
-  loads a helper framework, streams NDJSON), with an AppleScript fallback for
-  Spotify / Music and a browser-tab probe fallback for Arc.
-- **AI Agents** — real-time monitor of Claude Code and Codex CLI sessions via
-  their hook systems (helper binary → unix socket → state machine). Cards show
-  state (working / needs permission / finished / failed), activity, cycle
-  duration; finished cards auto-clear after ~60 s. Per-provider tabs, manual
-  Clear, native notifications on important transitions. Read-only: secrets are
-  redacted in the hook helper before anything leaves the process.
+| | Module | What it does |
+|---|--------|--------------|
+| 🤖 | **AI Agents** | Live cards for every Claude Code and Codex session: state (working / needs permission / finished / failed), current activity, cycle duration. Codex Desktop is monitored even though it ignores hooks — via a read-only local session stream. |
+| 🔔 | **Attention** | A unified inbox of the moments you'd otherwise miss: an agent needs permission, finished, or failed. Deduplicated, persisted, one native notification per event — never two. |
+| 📸 | **Screenshot Buffer** | Every screenshot and copied image lands in a buffer with Finder-style multi-item drag-out. Originals are never deleted. |
+| 📋 | **Clipboard** | In-memory history of what you copy — text, links, code, files — with pinning and type filters. Password-manager entries are never captured. |
+| 🎵 | **Now Playing** | Global media card with artwork and transport controls, including browser tabs (Arc) when macOS won't expose the session. |
 
-## Interaction
+## Highlights
 
-- Rest the pointer on the island → it expands (short intent delay filters
-  drive-by cursor passes). Move away → collapses after a grace period.
-- Click works too; click outside collapses.
-- The island never becomes the key window — your keyboard focus stays in the
-  app you're typing in.
-- When media plays, the island shows a compact player around the notch; agent
-  activity joins as a micro-cluster.
+- **Hover to open, leave to close** — with an intent delay so a passing cursor
+  doesn't trigger it. Click works too. Delays are tunable in Settings.
+- **Never becomes the key window.** Your keyboard focus stays where you work.
+- **English + Русский**, switchable live from the menu bar — UI, tooltips and
+  notifications included.
+- **Settings**: hover behavior, per-kind and per-provider agent notifications,
+  launch at login, buffer sizes, retention, sidebar module order.
+- Auto-updates via Sparkle.
 
-## Requirements
+## Install
 
-- macOS 15.0+ (verified on macOS 26 "Tahoe"), Apple Silicon
-  (the vendored `MediaRemoteAdapter.framework` binary is arm64-only).
-- Xcode + [XcodeGen](https://github.com/yonaskolb/XcodeGen).
+Grab the notarized DMG from [Releases](https://github.com/linkoln-1/mac-dynamic-island/releases),
+drag PersonalIsland to Applications, launch. macOS 15+, Apple Silicon.
 
-## Build & Run
+The app is distributed outside the App Store (it relies on private APIs the
+sandbox forbids) and is Developer ID signed and notarized.
+
+## Build from source
 
 ```bash
+brew install xcodegen
+git clone https://github.com/linkoln-1/mac-dynamic-island
+cd mac-dynamic-island
 xcodegen
 xcodebuild -project PersonalIsland.xcodeproj -scheme PersonalIsland \
   -configuration Debug build
-open <derived-data>/Build/Products/Debug/PersonalIsland.app
 ```
 
-Tests:
+Tests: `xcodebuild -project PersonalIsland.xcodeproj -scheme PersonalIsland test`
+(220+ unit and interaction tests).
 
-```bash
-xcodebuild -project PersonalIsland.xcodeproj -scheme PersonalIsland test
-```
+## How the agent monitor works
 
-The app is ad-hoc signed and runs as a menu-bar-less agent (`LSUIElement`).
-Enabling the AI Agents module installs hooks into `~/.claude/settings.json`
-and `~/.codex/hooks.json` (existing settings are merged, with backups); Codex
-additionally requires trusting the hooks once via `/hooks` in the CLI.
-
-## Architecture notes
-
-- The `NSPanel` is a fixed 640×240 top-center window that never moves or
-  resizes; all expand/collapse animation happens inside SwiftUI.
-- Hit-testing accepts mouse input only over the visible island; the rest of
-  the panel passes clicks through.
-- A private CGS space keeps the island above fullscreen apps; the app degrades
-  gracefully if that SPI breaks.
-- `docs/` contains the spec and field-verified research notes on the notch
-  window, MediaRemote, screenshots and agent hooks.
+Claude Code sessions are observed through its official hook system: a tiny
+helper normalizes lifecycle events and hands them to the app over a unix
+socket, with an on-disk spool as the fallback. Codex Desktop's bundled runtime
+doesn't execute hooks, so PersonalIsland tails its local rollout stream
+(read-only, metadata only — prompts and outputs are never read). Everything
+funnels into one state machine, one attention pipeline, one notification.
+Details live in [`docs/`](docs/): the spec, field-verified research notes and
+the attention/localization architecture.
 
 ## License
 

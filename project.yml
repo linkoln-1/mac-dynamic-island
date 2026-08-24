@@ -27,6 +27,8 @@ targets:
       - Island
       - Modules
       - Shared
+      - path: Support/AppIcon.icns
+        buildPhase: resources
       - path: Vendor/MediaRemoteAdapter/mediaremote-adapter.pl
         buildPhase: resources
       - path: Vendor/MediaRemoteAdapter/MediaRemoteAdapterTestClient

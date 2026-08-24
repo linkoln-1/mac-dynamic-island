@@ -64,6 +64,8 @@ final class AppState: ObservableObject {
 
         windowController.start()
 
+        OnboardingController.shared.showIfNeeded()
+
         #if DEBUG
 
         if ProcessInfo.processInfo.environment["PI_DEBUG_EXPAND"] == "1" {
