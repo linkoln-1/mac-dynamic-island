@@ -3,5 +3,17 @@
   <channel>
     <title>PersonalIsland Updates</title>
     <link>https://github.com/linkoln-1/mac-dynamic-island</link>
+    <item>
+      <title>1.0.0</title>
+      <pubDate>Mon, 24 Aug 2026 22:13:00 +0300</pubDate>
+      <sparkle:version>1.0.0</sparkle:version>
+      <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+      <enclosure
+        url="https://github.com/linkoln-1/mac-dynamic-island/releases/download/v1.0.0/PersonalIsland-1.0.0.dmg"
+        length="3675049"
+        type="application/octet-stream"
+        sparkle:edSignature="tfLMPtSvmYvi4GvZWgvCtWbKV/PpBuWE8+hnF3I8kLuOqPbJLS2G4hY5ZEIRapyvmVvLzHmCtM4alkpKHo/4AQ==" />
+    </item>
   </channel>
 </rss>

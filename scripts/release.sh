@@ -25,10 +25,28 @@ xcodebuild -project PersonalIsland.xcodeproj -scheme PersonalIsland \
   CODE_SIGN_IDENTITY="$IDENTITY" DEVELOPMENT_TEAM="$TEAM_ID" \
   MARKETING_VERSION="$VERSION" \
   OTHER_CODE_SIGN_FLAGS="--timestamp --options=runtime" \
+  CODE_SIGN_INJECT_BASE_ENTITLEMENTS=NO \
   build
 
-codesign --force --sign "$IDENTITY" --timestamp --options=runtime \
-  "$APP/Contents/Frameworks/MediaRemoteAdapter.framework"
+# Inside-out signing: Xcode leaves Sparkle's nested helpers ad-hoc signed, and the
+# notary service rejects every unsigned/un-timestamped Mach-O in the bundle.
+sign() {
+  codesign --force --sign "$IDENTITY" --timestamp --options=runtime "$1"
+}
+
+SPARKLE_FW="$APP/Contents/Frameworks/Sparkle.framework/Versions/B"
+sign "$SPARKLE_FW/XPCServices/Downloader.xpc"
+sign "$SPARKLE_FW/XPCServices/Installer.xpc"
+sign "$SPARKLE_FW/Updater.app"
+sign "$SPARKLE_FW/Autoupdate"
+sign "$APP/Contents/Frameworks/Sparkle.framework"
+
+sign "$APP/Contents/Resources/MediaRemoteAdapterTestClient"
+# Re-sign without entitlements: the injected get-task-allow is a debug-only
+# entitlement that notarization rejects.
+sign "$APP/Contents/MacOS/personal-island-agent-hook"
+
+sign "$APP/Contents/Frameworks/MediaRemoteAdapter.framework"
 codesign --force --sign "$IDENTITY" --timestamp --options=runtime \
   --entitlements "$ROOT/Support/PersonalIsland.entitlements" "$APP"
 codesign --verify --deep --strict "$APP"
