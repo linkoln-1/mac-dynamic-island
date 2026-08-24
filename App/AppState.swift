@@ -33,6 +33,8 @@ final class AppState: ObservableObject {
 
         ScreenshotsModuleController.shared.activate()
 
+        ClipboardModuleController.shared.activate()
+
         NowPlayingViewModel.shared.startIfNeeded()
 
         AgentsModuleController.shared.activateIfEnabled()
@@ -73,6 +75,7 @@ final class AppState: ObservableObject {
     func stop() {
         guard isStarted else { return }
         ScreenshotsModuleController.shared.deactivate()
+        ClipboardModuleController.shared.deactivate()
     }
 
     func openIsland() {

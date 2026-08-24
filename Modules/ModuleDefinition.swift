@@ -29,7 +29,10 @@ final class ModuleRegistry: ObservableObject {
 
     init(modules: [any IslandModule]? = nil) {
         self.modules = modules
-            ?? [ScreenshotBufferModule(), NowPlayingModule(), AgentsModule(), AttentionModule()]
+            ?? [
+                ScreenshotBufferModule(), NowPlayingModule(), AgentsModule(),
+                AttentionModule(), ClipboardModule(),
+            ]
     }
 
     func module(withID id: String) -> (any IslandModule)? {
@@ -62,6 +65,16 @@ struct AgentsModule: IslandModule {
 
     func makeContent() -> AnyView {
         AnyView(AgentMonitorView())
+    }
+}
+
+struct ClipboardModule: IslandModule {
+    let id = "clipboard"
+    let title = "Clipboard"
+    let systemImage = "doc.on.clipboard"
+
+    func makeContent() -> AnyView {
+        AnyView(ClipboardHistoryView())
     }
 }
 

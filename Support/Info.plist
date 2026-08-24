@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.0</string>
+	<string>0.1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSUIElement</key>
@@ -26,11 +26,5 @@
 	<string>PersonalIsland uses automation access only to read and control media playing in your browser or music apps when macOS Now Playing does not expose the session reliably.</string>
 	<key>NSHumanReadableCopyright</key>
 	<string></string>
-	<key>SUEnableAutomaticChecks</key>
-	<true/>
-	<key>SUFeedURL</key>
-	<string>https://raw.githubusercontent.com/linkoln-1/mac-dynamic-island/main/appcast.xml</string>
-	<key>SUPublicEDKey</key>
-	<string>V4yfTRdmoe20PNhO4oLRpIP6vW+l9iafIxg0z/hh8uU=</string>
 </dict>
 </plist>

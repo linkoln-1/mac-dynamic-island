@@ -2,7 +2,7 @@ import SwiftUI
 
 enum IslandMetrics {
 
-    static let expandedSize = CGSize(width: 640, height: 220)
+    static let expandedSize = CGSize(width: 640, height: 256)
 
     static let shadowPadding: CGFloat = 20
 

@@ -3,6 +3,7 @@ set -euo pipefail
 
 VERSION="${1:?usage: release.sh <version> (e.g. 1.0.0)}"
 IDENTITY="${IDENTITY:-Developer ID Application}"
+TEAM_ID="${TEAM_ID:-XSXSZ2A7D9}"
 NOTARY_PROFILE="${NOTARY_PROFILE:-personalisland-notary}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 DD="$ROOT/build/release"
@@ -22,9 +23,14 @@ plutil -replace CFBundleShortVersionString -string "$VERSION" Support/Info.plist
 xcodegen
 xcodebuild -project PersonalIsland.xcodeproj -scheme PersonalIsland \
   -configuration Release -derivedDataPath "$DD" \
-  CODE_SIGN_IDENTITY="$IDENTITY" OTHER_CODE_SIGN_FLAGS="--timestamp --options=runtime" \
+  CODE_SIGN_IDENTITY="$IDENTITY" DEVELOPMENT_TEAM="$TEAM_ID" \
+  OTHER_CODE_SIGN_FLAGS="--timestamp --options=runtime" \
   build
 
+codesign --force --sign "$IDENTITY" --timestamp --options=runtime \
+  "$APP/Contents/Frameworks/MediaRemoteAdapter.framework"
+codesign --force --sign "$IDENTITY" --timestamp --options=runtime \
+  --entitlements "$ROOT/Support/PersonalIsland.entitlements" "$APP"
 codesign --verify --deep --strict "$APP"
 echo "== signed OK =="
 

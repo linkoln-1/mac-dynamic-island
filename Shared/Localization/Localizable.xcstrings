@@ -679,6 +679,76 @@
         "ru" : { "stringUnit" : { "state" : "translated", "value" : "Проверить обновления…" } }
       }
     },
+    "module.clipboard.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Clipboard" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Буфер обмена" } }
+      }
+    },
+    "clipboard.kind.text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Text" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Текст" } }
+      }
+    },
+    "clipboard.kind.url" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Link" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Ссылка" } }
+      }
+    },
+    "clipboard.kind.code" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Code" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Код" } }
+      }
+    },
+    "clipboard.kind.file" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "File" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Файл" } }
+      }
+    },
+    "clipboard.action.pin" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Pin" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Закрепить" } }
+      }
+    },
+    "clipboard.action.unpin" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Unpin" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Открепить" } }
+      }
+    },
+    "clipboard.action.delete" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Delete" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Удалить" } }
+      }
+    },
+    "clipboard.empty" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Copy something — it appears here.\nPassword manager entries are never captured." } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Скопируйте что-нибудь — оно появится здесь.\nЗаписи менеджеров паролей не сохраняются." } }
+      }
+    },
+    "clipboard.copied" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Copied" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Скопировано" } }
+      }
+    },
     "menu.quit" : {
       "extractionState" : "manual",
       "localizations" : {
