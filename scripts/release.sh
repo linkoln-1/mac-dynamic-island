@@ -19,11 +19,11 @@ if ! security find-identity -v -p codesigning | grep -q "Developer ID Applicatio
 fi
 
 cd "$ROOT"
-plutil -replace CFBundleShortVersionString -string "$VERSION" Support/Info.plist
 xcodegen
 xcodebuild -project PersonalIsland.xcodeproj -scheme PersonalIsland \
   -configuration Release -derivedDataPath "$DD" \
   CODE_SIGN_IDENTITY="$IDENTITY" DEVELOPMENT_TEAM="$TEAM_ID" \
+  MARKETING_VERSION="$VERSION" \
   OTHER_CODE_SIGN_FLAGS="--timestamp --options=runtime" \
   build
 
