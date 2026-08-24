@@ -246,7 +246,7 @@ private final class CodexSessionsWatcher {
         }
         guard let created = FSEventStreamCreate(
             nil, callback, &context, [root] as CFArray,
-            FSEventStreamEventId(kFSEventStreamEventIdSinceNow), 2.0,
+            FSEventStreamEventId(kFSEventStreamEventIdSinceNow), 1.0,
             FSEventStreamCreateFlags(
                 kFSEventStreamCreateFlagFileEvents | kFSEventStreamCreateFlagUseCFTypes
             )

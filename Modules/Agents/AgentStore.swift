@@ -253,7 +253,6 @@ final class AgentStore: ObservableObject {
         var summary = CompactSummary()
         for session in sessions.values {
             let isActive = session.state == .working || session.state == .needsPermission
-                || session.state == .idle
             if isActive {
                 switch session.provider {
                 case .claude: summary.claudeActive += 1
