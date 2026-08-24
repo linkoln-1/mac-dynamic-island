@@ -122,6 +122,31 @@ final class AppSettingsTests: XCTestCase {
         XCTAssertEqual(state.mode, .expanded, "live policy 0.05s must override injected 30s")
     }
 
+    func testModuleOrderDefaultsAndCustom() {
+        let settings = AppSettings(defaults: defaults)
+        let all = ["a", "b", "c"]
+        XCTAssertEqual(settings.orderedModuleIDs(all: all), ["a", "b", "c"])
+
+        settings.moduleOrder = ["c", "ghost", "a"]
+        XCTAssertEqual(settings.orderedModuleIDs(all: all), ["c", "a", "b"])
+
+        let reloaded = AppSettings(defaults: defaults)
+        XCTAssertEqual(reloaded.orderedModuleIDs(all: all), ["c", "a", "b"])
+    }
+
+    func testMoveModuleSwapsAndClamps() {
+        let settings = AppSettings(defaults: defaults)
+        let all = ["a", "b", "c"]
+        settings.moveModule("c", offset: -1, all: all)
+        XCTAssertEqual(settings.orderedModuleIDs(all: all), ["a", "c", "b"])
+        settings.moveModule("a", offset: -1, all: all)
+        XCTAssertEqual(settings.orderedModuleIDs(all: all), ["a", "c", "b"])
+        settings.moveModule("b", offset: 1, all: all)
+        XCTAssertEqual(settings.orderedModuleIDs(all: all), ["a", "c", "b"])
+        settings.moveModule("ghost", offset: 1, all: all)
+        XCTAssertEqual(settings.orderedModuleIDs(all: all), ["a", "c", "b"])
+    }
+
     func testScreenshotBufferUsesLiveLimit() {
         let buffer = ScreenshotBuffer(maxItems: 30)
         buffer.liveLimit = { 2 }

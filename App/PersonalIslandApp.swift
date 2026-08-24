@@ -130,6 +130,37 @@ struct SettingsPlaceholderView: View {
                     }
                 }
             }
+            Section(lang.string("settings.section.modules")) {
+                let allIDs = ModuleRegistry.shared.modules.map(\.id)
+                let ordered = settings.orderedModuleIDs(all: allIDs)
+                ForEach(Array(ordered.enumerated()), id: \.element) { index, moduleID in
+                    HStack {
+                        if let module = ModuleRegistry.shared.module(withID: moduleID) {
+                            Image(systemName: module.systemImage)
+                                .frame(width: 20)
+                                .foregroundStyle(.secondary)
+                            Text(lang.string("module.\(moduleID).title"))
+                        }
+                        Spacer()
+                        Button {
+                            settings.moveModule(moduleID, offset: -1, all: allIDs)
+                        } label: {
+                            Image(systemName: "chevron.up")
+                        }
+                        .buttonStyle(.borderless)
+                        .disabled(index == 0)
+                        .help(lang.string("settings.modules.moveUp"))
+                        Button {
+                            settings.moveModule(moduleID, offset: 1, all: allIDs)
+                        } label: {
+                            Image(systemName: "chevron.down")
+                        }
+                        .buttonStyle(.borderless)
+                        .disabled(index == ordered.count - 1)
+                        .help(lang.string("settings.modules.moveDown"))
+                    }
+                }
+            }
             Section(lang.string("module.attention.title")) {
                 LabeledContent(lang.string("settings.attention.retention")) {
                     HStack(spacing: 6) {

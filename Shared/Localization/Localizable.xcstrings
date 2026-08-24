@@ -749,6 +749,27 @@
         "ru" : { "stringUnit" : { "state" : "translated", "value" : "Скопировано" } }
       }
     },
+    "settings.section.modules" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Sidebar Modules" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Модули сайдбара" } }
+      }
+    },
+    "settings.modules.moveUp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Move up" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Выше" } }
+      }
+    },
+    "settings.modules.moveDown" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Move down" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Ниже" } }
+      }
+    },
     "menu.quit" : {
       "extractionState" : "manual",
       "localizations" : {

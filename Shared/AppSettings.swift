@@ -4,7 +4,15 @@ import ServiceManagement
 
 @MainActor
 final class AppSettings: ObservableObject {
-    static let shared = AppSettings()
+    static let shared: AppSettings = {
+        guard ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] == nil else {
+            let suite = "com.lincode.PersonalIsland.tests"
+            let defaults = UserDefaults(suiteName: suite)!
+            defaults.removePersistentDomain(forName: suite)
+            return AppSettings(defaults: defaults)
+        }
+        return AppSettings()
+    }()
 
     @Published var hoverOpenEnabled: Bool { didSet { save() } }
     @Published var hoverExpandDelay: Double { didSet { save() } }
@@ -17,6 +25,7 @@ final class AppSettings: ObservableObject {
     @Published var agentAutoClearSeconds: Double { didSet { save() } }
     @Published var screenshotBufferLimit: Int { didSet { save() } }
     @Published var attentionRetentionDays: Double { didSet { save() } }
+    @Published var moduleOrder: [String] { didSet { save() } }
 
     private let defaults: UserDefaults
     private var isLoading = true
@@ -34,7 +43,23 @@ final class AppSettings: ObservableObject {
         agentAutoClearSeconds = defaults.object(forKey: "settings.agentAutoClearSeconds") as? Double ?? 60
         screenshotBufferLimit = defaults.object(forKey: "settings.screenshotBufferLimit") as? Int ?? 30
         attentionRetentionDays = defaults.object(forKey: "settings.attentionRetentionDays") as? Double ?? 7
+        moduleOrder = defaults.object(forKey: "settings.moduleOrder") as? [String] ?? []
         isLoading = false
+    }
+
+    func orderedModuleIDs(all: [String]) -> [String] {
+        let known = moduleOrder.filter { all.contains($0) }
+        let missing = all.filter { !known.contains($0) }
+        return known + missing
+    }
+
+    func moveModule(_ id: String, offset: Int, all: [String]) {
+        var order = orderedModuleIDs(all: all)
+        guard let index = order.firstIndex(of: id) else { return }
+        let target = index + offset
+        guard target >= 0, target < order.count else { return }
+        order.swapAt(index, target)
+        moduleOrder = order
     }
 
     private func save() {
@@ -50,6 +75,7 @@ final class AppSettings: ObservableObject {
         defaults.set(agentAutoClearSeconds, forKey: "settings.agentAutoClearSeconds")
         defaults.set(screenshotBufferLimit, forKey: "settings.screenshotBufferLimit")
         defaults.set(attentionRetentionDays, forKey: "settings.attentionRetentionDays")
+        defaults.set(moduleOrder, forKey: "settings.moduleOrder")
     }
 
     var hoverPolicy: IslandHoverPolicy {
