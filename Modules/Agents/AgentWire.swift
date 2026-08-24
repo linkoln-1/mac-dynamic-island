@@ -35,6 +35,7 @@ struct AgentWireEvent: Codable, Equatable {
     var notificationType: String?
 
     var dedupKey: String
+    var hostAppPath: String? = nil
 
     enum CodingKeys: String, CodingKey {
         case v, provider, event
@@ -45,6 +46,7 @@ struct AgentWireEvent: Codable, Equatable {
         case activityDetail = "act"
         case notificationType = "nt"
         case dedupKey = "uid"
+        case hostAppPath = "app"
     }
 }
 

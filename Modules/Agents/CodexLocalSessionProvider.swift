@@ -1,3 +1,4 @@
+import AppKit
 import CoreServices
 import Foundation
 
@@ -87,6 +88,17 @@ final class CodexLocalSessionProvider {
 
     private(set) var health: Health = .inactive
     var isHookAuthority: (String) -> Bool = { _ in false }
+    var desktopAppPath: String? = NSWorkspace.shared
+        .urlForApplication(withBundleIdentifier: "com.openai.codex")?.path
+
+    private func stamped(_ events: [AgentWireEvent]) -> [AgentWireEvent] {
+        guard let desktopAppPath else { return events }
+        return events.map { event in
+            var copy = event
+            copy.hostAppPath = desktopAppPath
+            return copy
+        }
+    }
 
     private let root: URL
     private let emit: ([AgentWireEvent]) -> Void
@@ -180,7 +192,7 @@ final class CodexLocalSessionProvider {
                 copy.dedupKey = "\(event.dedupKey):announce\(index)"
                 return copy
             }
-            emit(unique)
+            emit(stamped(unique))
             Log.agentBridge.info("codex reconcile: active session imported")
         }
         trackers[fileURL.path] = tracker
@@ -224,7 +236,7 @@ final class CodexLocalSessionProvider {
         trackers[fileURL.path] = tracker
 
         let allowed = produced.filter { !isHookAuthority($0.sessionID) }
-        if !allowed.isEmpty { emit(allowed) }
+        if !allowed.isEmpty { emit(stamped(allowed)) }
     }
 }
 

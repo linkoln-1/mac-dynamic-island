@@ -17,9 +17,10 @@ func run() {
     let input = FileHandle.standardInput.readData(ofLength: maxStdinBytes)
     guard !input.isEmpty,
           let payload = (try? JSONSerialization.jsonObject(with: input)) as? [String: Any],
-          let event = AgentHookPayloadMapper.wireEvent(provider: provider, payload: payload),
-          let encoded = try? JSONEncoder().encode(event)
+          var event = AgentHookPayloadMapper.wireEvent(provider: provider, payload: payload)
     else { exit(0) }
+    event.hostAppPath = hostAppPath()
+    guard let encoded = try? JSONEncoder().encode(event) else { exit(0) }
 
     if !sendOverSocket(encoded) {
         spool(encoded, dedupKey: event.dedupKey)
@@ -74,3 +75,31 @@ private func spool(_ data: Data, dedupKey: String) {
 }
 
 run()
+
+
+private func parentPID(of pid: pid_t) -> pid_t? {
+    var info = kinfo_proc()
+    var size = MemoryLayout<kinfo_proc>.stride
+    var mib: [Int32] = [CTL_KERN, KERN_PROC, KERN_PROC_PID, pid]
+    guard sysctl(&mib, 4, &info, &size, nil, 0) == 0, size > 0 else { return nil }
+    let parent = info.kp_eproc.e_ppid
+    return parent > 0 ? parent : nil
+}
+
+private func hostAppPath() -> String? {
+    var pid = getppid()
+    for _ in 0..<20 {
+        guard pid > 1 else { return nil }
+        var buffer = [CChar](repeating: 0, count: 4096)
+        let length = proc_pidpath(pid, &buffer, UInt32(buffer.count))
+        if length > 0 {
+            let path = String(cString: buffer)
+            if let range = path.range(of: ".app/") {
+                return String(path[..<range.lowerBound]) + ".app"
+            }
+        }
+        guard let parent = parentPID(of: pid) else { return nil }
+        pid = parent
+    }
+    return nil
+}

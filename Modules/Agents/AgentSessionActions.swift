@@ -48,6 +48,11 @@ struct AgentProjectActions {
         pasteboard.write(path)
     }
 
+    func openApp(path: String) {
+        guard isAvailable(path: path) else { return }
+        workspace.open(URL(fileURLWithPath: path, isDirectory: true))
+    }
+
     func openProject(path: String) {
         guard isAvailable(path: path) else { return }
         if let container = projectContainer(in: path) {

@@ -76,6 +76,31 @@ final class AgentActionsTests: XCTestCase {
         XCTAssertTrue(workspace.opened.isEmpty)
     }
 
+    func testOpenAppActivatesExistingBundleOnly() {
+        actions.openApp(path: tempDir.path)
+        XCTAssertEqual(workspace.opened.last?.path, tempDir.path)
+        actions.openApp(path: tempDir.path + "/missing.app")
+        XCTAssertEqual(workspace.opened.count, 1)
+    }
+
+    @MainActor
+    func testHostAppPathFlowsIntoSession() {
+        let store = AgentStore()
+        store.ingest(AgentWireEvent(
+            provider: .claude, event: "UserPromptSubmit", sessionID: "host-test",
+            timestamp: 0, cwd: "/tmp/p", toolName: nil, activityDetail: nil,
+            notificationType: nil, dedupKey: "h1", hostAppPath: "/Applications/iTerm.app"
+        ))
+        XCTAssertEqual(store.sessions["claude:host-test"]?.hostAppPath, "/Applications/iTerm.app")
+
+        store.ingest(AgentWireEvent(
+            provider: .claude, event: "PreToolUse", sessionID: "host-test",
+            timestamp: 0, cwd: "/tmp/p", toolName: "Bash", activityDetail: "ls",
+            notificationType: nil, dedupKey: "h2", hostAppPath: nil
+        ))
+        XCTAssertEqual(store.sessions["claude:host-test"]?.hostAppPath, "/Applications/iTerm.app")
+    }
+
     func testFocusCapabilitiesAreUnavailableByDesign() {
         XCTAssertFalse(AgentSessionFocusCapability.claudeExactSession)
         XCTAssertFalse(AgentSessionFocusCapability.codexCLIExactSession)

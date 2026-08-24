@@ -74,6 +74,9 @@ final class AgentStore: ObservableObject {
         let moment = now()
         var session = sessions[key] ?? newSession(for: event, at: moment)
         session.lastActivityAt = moment
+        if let hostAppPath = event.hostAppPath {
+            session.hostAppPath = hostAppPath
+        }
         let previousState = session.state
         let previousCycleID = session.cycleID
 

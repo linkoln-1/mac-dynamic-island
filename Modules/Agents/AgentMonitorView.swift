@@ -234,6 +234,22 @@ struct AgentSessionCard: View {
             }
             Spacer(minLength: 4)
             durationLabel
+            if isHovering, let hostAppPath = session.hostAppPath,
+               Self.projectActions.isAvailable(path: hostAppPath) {
+                Button {
+                    Self.projectActions.openApp(path: hostAppPath)
+                } label: {
+                    Image(systemName: "arrow.up.forward.app")
+                        .font(.system(size: 10))
+                        .foregroundStyle(.white.opacity(0.75))
+                        .frame(width: 18, height: 18)
+                        .background(Color.white.opacity(0.08), in: Circle())
+                        .contentShape(Circle())
+                }
+                .buttonStyle(.plain)
+                .help(lang.string("agent.action.openApp"))
+                .accessibilityLabel(lang.string("agent.action.openApp"))
+            }
             if isHovering, Self.projectActions.isAvailable(path: session.projectPath) {
                 AgentActionMenuButton(projectPath: session.projectPath)
             }

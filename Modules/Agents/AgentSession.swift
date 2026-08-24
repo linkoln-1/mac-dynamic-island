@@ -37,6 +37,7 @@ struct AgentSession: Identifiable, Equatable {
     var project: String
     var branch: String?
     var projectPath: String?
+    var hostAppPath: String?
 
     var state: AgentSessionState = .idle
     var activity: String = ""

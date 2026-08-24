@@ -812,6 +812,13 @@
         "ru" : { "stringUnit" : { "state" : "translated", "value" : "Начать" } }
       }
     },
+    "agent.action.openApp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open the app running this session" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Открыть приложение этой сессии" } }
+      }
+    },
     "menu.quit" : {
       "extractionState" : "manual",
       "localizations" : {
