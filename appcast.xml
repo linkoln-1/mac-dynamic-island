@@ -4,16 +4,24 @@
     <title>PersonalIsland Updates</title>
     <link>https://github.com/linkoln-1/mac-dynamic-island</link>
     <item>
-      <title>1.0.0</title>
-      <pubDate>Mon, 24 Aug 2026 22:13:00 +0300</pubDate>
-      <sparkle:version>1.0.0</sparkle:version>
-      <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+      <title>1.1.0</title>
+      <pubDate>Tue, 25 Aug 2026 20:32:48 +0300</pubDate>
+      <sparkle:version>1.1.0</sparkle:version>
+      <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[
+        <ul>
+          <li>The macOS Clock timer now shows in the island.</li>
+          <li>Agent sessions no longer get stuck on "Working", and permission requests reach the island again.</li>
+          <li>Now Playing finally reads media playing in Arc.</li>
+          <li>Reworked compact bar: artwork and controls at the left edge, status behind the notch, corners matching the notch.</li>
+        </ul>
+      ]]></description>
       <enclosure
-        url="https://github.com/linkoln-1/mac-dynamic-island/releases/download/v1.0.0/PersonalIsland-1.0.0.dmg"
-        length="3675049"
+        url="https://github.com/linkoln-1/mac-dynamic-island/releases/download/v1.1.0/PersonalIsland-1.1.0.dmg"
+        length="3728782"
         type="application/octet-stream"
-        sparkle:edSignature="tfLMPtSvmYvi4GvZWgvCtWbKV/PpBuWE8+hnF3I8kLuOqPbJLS2G4hY5ZEIRapyvmVvLzHmCtM4alkpKHo/4AQ==" />
+        sparkle:edSignature="DYEnZ9u0jeF6dNnYe2KUPm3ck0cbNY92Zj3ISc2NkHnhJdYBJy9mJGuGctH53MiVA3D1wCY0ng3Td2nfH92IBQ==" />
     </item>
   </channel>
 </rss>
