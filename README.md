@@ -40,12 +40,6 @@ typing in.
   <br/><sub>Expanded: the sidebar switches modules, the timer keeps its place in the notch strip.</sub>
 </p>
 
-<p align="center">
-  <img src="docs/assets/island-agents.png" width="820" alt="Expanded island showing the AI agent monitor with a Claude Code session card" />
-  <br/><sub>The agent monitor, shown here in Russian — the whole UI, tooltips and
-  notifications ship in English and Русский, switchable live from the menu bar.</sub>
-</p>
-
 ## Highlights
 
 - **Hover to open, leave to close** — with an intent delay so a passing cursor
