@@ -63,7 +63,7 @@ struct IslandRootView: View {
     private var compactContent: some View {
         CompactSurfaceView()
             .environment(\.notchGapWidth, state.closedSize.width)
-            .padding(.horizontal, 10)
+            .padding(.horizontal, 4)
     }
 
     private var islandSize: CGSize {

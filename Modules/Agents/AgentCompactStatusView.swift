@@ -23,6 +23,7 @@ struct AgentCompactStatusView: View {
                             .foregroundStyle(.white.opacity(0.8))
                     }
                 }
+                TimerCompactChip()
                 CompactAttentionBadge(count: attention.highPriorityUnreadCount, iconSize: 9)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -124,27 +125,33 @@ struct CompactSurfaceView: View {
     @ObservedObject private var media = NowPlayingViewModel.shared
     @ObservedObject private var agents = AgentsModuleController.shared.store
     @ObservedObject private var attention = AttentionStore.shared
+    @ObservedObject private var systemTimer = SystemTimerController.shared
     @Environment(\.notchGapWidth) private var notchGapWidth
 
     static let microZoneWidth: CGFloat = 56
+    static let timerZoneWidth: CGFloat = 46
 
     var body: some View {
         let plan = CompactSurfacePlan.plan(
             hasMedia: !media.state.isEmpty,
             hasAgentSummary: !agents.compactSummary.isEmpty,
-            highPriorityCount: attention.highPriorityUnreadCount
+            highPriorityCount: attention.highPriorityUnreadCount,
+            hasTimer: systemTimer.snapshot != nil
         )
         if plan.showsMedia {
             HStack(spacing: 0) {
-                if plan.showsMicroCluster {
-                    Color.clear.frame(width: Self.microZoneWidth)
+                HStack(spacing: 8) {
+                    NowPlayingCompactInfo()
+                    NowPlayingCompactControls()
                 }
-                NowPlayingCompactView()
-                if plan.showsMicroCluster {
+                .frame(maxWidth: .infinity, alignment: .leading)
+                Color.clear.frame(width: notchGapWidth)
+                HStack(spacing: 8) {
+                    TimerCompactChip()
                     AgentMicroClusterView()
-                        .frame(width: Self.microZoneWidth, alignment: .trailing)
-                        .padding(.trailing, 2)
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, 8)
             }
         } else {
             AgentCompactStatusView()

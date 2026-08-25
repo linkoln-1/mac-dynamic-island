@@ -66,6 +66,10 @@ struct SettingsPlaceholderView: View {
                     value: $settings.hoverCollapseGrace, range: 0.3...2.0, step: 0.05
                 )
                 .disabled(!settings.hoverOpenEnabled)
+                Toggle(lang.string("settings.island.showTimer"), isOn: $settings.showSystemTimer)
+                    .onChange(of: settings.showSystemTimer) { _, _ in
+                        SystemTimerController.shared.refresh()
+                    }
             }
             Section(lang.string("settings.section.notifications")) {
                 Toggle(lang.string("agent.state.finished"), isOn: $settings.notifyFinished)

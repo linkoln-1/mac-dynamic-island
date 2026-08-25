@@ -26,6 +26,7 @@ final class AppSettings: ObservableObject {
     @Published var screenshotBufferLimit: Int { didSet { save() } }
     @Published var attentionRetentionDays: Double { didSet { save() } }
     @Published var moduleOrder: [String] { didSet { save() } }
+    @Published var showSystemTimer: Bool { didSet { save() } }
 
     private let defaults: UserDefaults
     private var isLoading = true
@@ -33,6 +34,7 @@ final class AppSettings: ObservableObject {
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
         hoverOpenEnabled = defaults.object(forKey: "settings.hoverOpenEnabled") as? Bool ?? true
+        showSystemTimer = defaults.object(forKey: "settings.showSystemTimer") as? Bool ?? true
         hoverExpandDelay = defaults.object(forKey: "settings.hoverExpandDelay") as? Double ?? 0.2
         hoverCollapseGrace = defaults.object(forKey: "settings.hoverCollapseGrace") as? Double ?? 0.75
         notifyFinished = defaults.object(forKey: "settings.notifyFinished") as? Bool ?? true
@@ -65,6 +67,7 @@ final class AppSettings: ObservableObject {
     private func save() {
         guard !isLoading else { return }
         defaults.set(hoverOpenEnabled, forKey: "settings.hoverOpenEnabled")
+        defaults.set(showSystemTimer, forKey: "settings.showSystemTimer")
         defaults.set(hoverExpandDelay, forKey: "settings.hoverExpandDelay")
         defaults.set(hoverCollapseGrace, forKey: "settings.hoverCollapseGrace")
         defaults.set(notifyFinished, forKey: "settings.notifyFinished")

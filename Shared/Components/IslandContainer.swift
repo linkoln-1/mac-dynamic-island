@@ -22,6 +22,11 @@ struct IslandContainer: View {
 
         .padding(.horizontal, IslandMetrics.expandedContentHorizontalInset)
         .padding(.bottom, IslandMetrics.expandedContentBottomInset)
+        .overlay(alignment: .topLeading) {
+            TimerExpandedChip()
+                .padding(.leading, IslandMetrics.expandedContentHorizontalInset + 4)
+                .padding(.top, max(0, (state.closedSize.height - 24) / 2))
+        }
     }
 
     @ViewBuilder

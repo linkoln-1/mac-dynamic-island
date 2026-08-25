@@ -39,24 +39,34 @@ final class AppState: ObservableObject {
 
         AgentsModuleController.shared.activateIfEnabled()
 
-        Publishers.CombineLatest3(
+        SystemTimerController.shared.start()
+
+        Publishers.CombineLatest4(
             NowPlayingViewModel.shared.$state.map { !$0.isEmpty }.removeDuplicates(),
             AgentsModuleController.shared.store.$sessions
                 .map { _ in AgentsModuleController.shared.store.compactSummary }
                 .removeDuplicates(),
             AttentionStore.shared.$items
                 .map { _ in AttentionStore.shared.highPriorityUnreadCount }
-                .removeDuplicates()
+                .removeDuplicates(),
+            SystemTimerController.shared.$snapshot.map { $0 != nil }.removeDuplicates()
         )
-        .sink { [weak self] hasMedia, agentSummary, highPriorityCount in
+        .sink { [weak self] hasMedia, agentSummary, highPriorityCount, hasTimer in
             guard let self else { return }
             let plan = CompactSurfacePlan.plan(
                 hasMedia: hasMedia,
                 hasAgentSummary: !agentSummary.isEmpty,
-                highPriorityCount: highPriorityCount
+                highPriorityCount: highPriorityCount,
+                hasTimer: hasTimer
             )
+            let leftNeed: CGFloat = plan.showsMedia
+                ? IslandMetrics.compactArtworkSize + 8 + 3 * IslandMetrics.compactControlHitTarget
+                : 0
+            let rightNeed: CGFloat = (plan.showsTimer ? CompactSurfaceView.timerZoneWidth + 8 : 0)
+                + (plan.showsAgentMicro || !plan.showsMedia ? CompactSurfaceView.microZoneWidth : 0)
+            let wing = max(leftNeed, rightNeed, 44) + 6
             self.islandState.compactWidthBonus =
-                plan.showsMicroCluster ? CompactSurfaceView.microZoneWidth * 2 : 0
+                2 * wing + 8 - IslandMetrics.compactExtraWidth
             self.islandState.compactShowsAgentsOnly = !plan.showsMedia && !plan.isEmpty
             self.islandState.setCompactAvailable(!plan.isEmpty)
         }

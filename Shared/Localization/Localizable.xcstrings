@@ -1,864 +1,2242 @@
 {
-  "sourceLanguage" : "en",
-  "version" : "1.0",
-  "strings" : {
-    "module.screenshots.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Screenshot Buffer" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Буфер скриншотов" } }
-      }
-    },
-    "module.nowPlaying.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Now Playing" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Сейчас играет" } }
-      }
-    },
-    "module.agents.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "AI Agents" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "AI-агенты" } }
-      }
-    },
-    "module.attention.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Attention" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Внимание" } }
-      }
-    },
-    "agent.state.idle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Idle" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Ожидание" } }
-      }
-    },
-    "agent.state.working" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Working" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Выполняется" } }
-      }
-    },
-    "agent.state.needsPermission" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Needs permission" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Требуется разрешение" } }
-      }
-    },
-    "agent.state.finished" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Finished" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Завершено" } }
-      }
-    },
-    "agent.state.failed" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Failed" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Ошибка" } }
-      }
-    },
-    "agent.state.stale" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No recent activity" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Нет активности" } }
-      }
-    },
-    "agent.setup.description" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Monitor Claude Code and Codex sessions in real time." } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Мониторинг сессий Claude Code и Codex в реальном времени." } }
-      }
-    },
-    "agent.setup.enable" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Enable Agent Monitoring" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Включить мониторинг агентов" } }
-      }
-    },
-    "agent.empty" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No agent sessions yet.\nStart Claude Code or Codex — sessions appear here." } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Сессий агентов пока нет.\nЗапустите Claude Code или Codex — они появятся здесь." } }
-      }
-    },
-    "agent.empty.provider" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No %@ sessions." } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Нет сессий %@." } }
-      }
-    },
-    "agent.empty.any" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No agent sessions." } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Нет сессий агентов." } }
-      }
-    },
-    "agent.tab.all" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "All" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Все" } }
-      }
-    },
-    "agent.tab.allProviders" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "All providers" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Все провайдеры" } }
-      }
-    },
-    "agent.clear" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Clear" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Очистить" } }
-      }
-    },
-    "agent.clear.help" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Remove finished and idle sessions" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Убрать завершённые и неактивные сессии" } }
-      }
-    },
-    "agent.repair" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Repair" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Починить" } }
-      }
-    },
-    "agent.sessions.count" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "variations" : { "plural" : {
-          "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld session" } },
-          "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld sessions" } }
-        } } },
-        "ru" : { "variations" : { "plural" : {
-          "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld сессия" } },
-          "few" : { "stringUnit" : { "state" : "translated", "value" : "%lld сессии" } },
-          "many" : { "stringUnit" : { "state" : "translated", "value" : "%lld сессий" } },
-          "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld сессии" } }
-        } } }
-      }
-    },
-    "agent.subagents.count" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "variations" : { "plural" : {
-          "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld subagent" } },
-          "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld subagents" } }
-        } } },
-        "ru" : { "variations" : { "plural" : {
-          "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld субагент" } },
-          "few" : { "stringUnit" : { "state" : "translated", "value" : "%lld субагента" } },
-          "many" : { "stringUnit" : { "state" : "translated", "value" : "%lld субагентов" } },
-          "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld субагента" } }
-        } } }
-      }
-    },
-    "agent.actions.help" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Project actions" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Действия с проектом" } }
-      }
-    },
-    "action.openProject" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open Project" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Открыть проект" } }
-      }
-    },
-    "action.revealInFinder" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Reveal in Finder" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Показать в Finder" } }
-      }
-    },
-    "action.copyProjectPath" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Copy Project Path" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Скопировать путь к проекту" } }
-      }
-    },
-    "agent.activity.working" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Working" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Работает" } }
-      }
-    },
-    "agent.activity.thinking" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Thinking…" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Думает…" } }
-      }
-    },
-    "agent.activity.reading" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Reading %@" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Читает %@" } }
-      }
-    },
-    "agent.activity.readingFiles" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Reading files" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Читает файлы" } }
-      }
-    },
-    "agent.activity.editing" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Editing %@" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Изменяет %@" } }
-      }
-    },
-    "agent.activity.editingFiles" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Editing files" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Изменяет файлы" } }
-      }
-    },
-    "agent.activity.writing" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Writing %@" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Пишет %@" } }
-      }
-    },
-    "agent.activity.writingFiles" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Writing files" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Пишет файлы" } }
-      }
-    },
-    "agent.activity.running" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Running %@" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Выполняет %@" } }
-      }
-    },
-    "agent.activity.runningCommand" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Running a command" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Выполняет команду" } }
-      }
-    },
-    "agent.activity.searching" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Searching" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Ищет" } }
-      }
-    },
-    "agent.activity.fetching" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Fetching a page" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Загружает страницу" } }
-      }
-    },
-    "agent.activity.subagent" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Working with subagent" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Работает с субагентом" } }
-      }
-    },
-    "agent.activity.mcp" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Using MCP tool" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Использует MCP-инструмент" } }
-      }
-    },
-    "agent.activity.using" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Using %@" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Использует %@" } }
-      }
-    },
-    "agent.activity.waitingPermission" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Waiting for your permission" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Ожидает вашего разрешения" } }
-      }
-    },
-    "agent.failure.rateLimit" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "rate limit" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "лимит запросов" } }
-      }
-    },
-    "agent.failure.authentication" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "authentication" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "ошибка авторизации" } }
-      }
-    },
-    "agent.failure.network" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "network error" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "ошибка сети" } }
-      }
-    },
-    "agent.failure.server" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "server error" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "ошибка сервера" } }
-      }
-    },
-    "agent.failure.generic" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "error" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "ошибка" } }
-      }
-    },
-    "attention.filter.unread" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Unread" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Непрочитанные" } }
-      }
-    },
-    "attention.filter.all" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "All" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Все" } }
-      }
-    },
-    "attention.unread.count" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "variations" : { "plural" : {
-          "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld unread" } },
-          "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld unread" } }
-        } } },
-        "ru" : { "variations" : { "plural" : {
-          "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld непрочитанное" } },
-          "few" : { "stringUnit" : { "state" : "translated", "value" : "%lld непрочитанных" } },
-          "many" : { "stringUnit" : { "state" : "translated", "value" : "%lld непрочитанных" } },
-          "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld непрочитанных" } }
-        } } }
-      }
-    },
-    "attention.clearRead" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Clear Read" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Очистить прочитанные" } }
-      }
-    },
-    "attention.empty.allClear" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "All clear" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Всё спокойно" } }
-      }
-    },
-    "attention.empty.noSources" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No attention sources enabled" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Источники уведомлений не включены" } }
-      }
-    },
-    "attention.action.markRead" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Mark as Read" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Отметить как прочитанное" } }
-      }
-    },
-    "attention.action.dismiss" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Dismiss" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Скрыть" } }
-      }
-    },
-    "attention.detail.finished" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Finished" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Завершено" } }
-      }
-    },
-    "attention.detail.finishedIn" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Finished in %@" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Завершено за %@" } }
-      }
-    },
-    "attention.badge.help" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Needs your attention" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Требуется ваше внимание" } }
-      }
-    },
-    "screenshots.selected" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Selected: %lld" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Выбрано: %lld" } }
-      }
-    },
-    "screenshots.copy" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Copy" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Скопировать" } }
-      }
-    },
-    "screenshots.remove" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Remove from Buffer" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Убрать из буфера" } }
-      }
-    },
-    "screenshots.clearSelection" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Clear Selection" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Снять выделение" } }
-      }
-    },
-    "screenshots.open" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Открыть" } }
-      }
-    },
-    "screenshots.quickLook" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Quick Look" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Быстрый просмотр" } }
-      }
-    },
-    "screenshots.empty" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Take a screenshot (⌘⇧3 / ⌘⇧4)\nor copy an image — it appears here." } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Сделайте скриншот (⌘⇧3 / ⌘⇧4)\nили скопируйте изображение — оно появится здесь." } }
-      }
-    },
-    "media.nothingPlaying" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Nothing Playing" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Ничего не играет" } }
-      }
-    },
-    "media.previous" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Previous track" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Предыдущий трек" } }
-      }
-    },
-    "media.next" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Next track" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Следующий трек" } }
-      }
-    },
-    "media.play" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Play" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Воспроизвести" } }
-      }
-    },
-    "media.pause" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Pause" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Пауза" } }
-      }
-    },
-    "media.progress" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Playback progress" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Прогресс воспроизведения" } }
-      }
-    },
-    "menu.openIsland" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open Island" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Открыть остров" } }
-      }
-    },
-    "menu.language" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Language" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Язык" } }
-      }
-    },
-    "menu.language.system" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "System" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Системный" } }
-      }
-    },
-    "menu.settings" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Settings…" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Настройки…" } }
-      }
-    },
-    "settings.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "PersonalIsland Settings" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Настройки PersonalIsland" } }
-      }
-    },
-    "settings.empty" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Nothing to configure yet." } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Пока нечего настраивать." } }
-      }
-    },
-    "settings.section.island" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Island" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Остров" } }
-      }
-    },
-    "settings.island.hoverOpen" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open on hover" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Раскрывать при наведении" } }
-      }
-    },
-    "settings.island.expandDelay" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Hover delay" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Задержка раскрытия" } }
-      }
-    },
-    "settings.island.collapseGrace" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Close delay" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Задержка сворачивания" } }
-      }
-    },
-    "settings.section.notifications" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Agent Notifications" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Уведомления агентов" } }
-      }
-    },
-    "settings.agents.autoClear" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Auto-clear finished after" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Автоочистка завершённых через" } }
-      }
-    },
-    "settings.section.general" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "General" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Основные" } }
-      }
-    },
-    "settings.launchAtLogin" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Launch at login" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Запускать при входе" } }
-      }
-    },
-    "settings.screenshots.limit" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Buffer size" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Размер буфера" } }
-      }
-    },
-    "settings.attention.retention" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Keep history" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Хранить историю" } }
-      }
-    },
-    "settings.seconds.suffix" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "s" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "с" } }
-      }
-    },
-    "settings.items.count" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "variations" : { "plural" : {
-          "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld item" } },
-          "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld items" } }
-        } } },
-        "ru" : { "variations" : { "plural" : {
-          "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld элемент" } },
-          "few" : { "stringUnit" : { "state" : "translated", "value" : "%lld элемента" } },
-          "many" : { "stringUnit" : { "state" : "translated", "value" : "%lld элементов" } },
-          "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld элемента" } }
-        } } }
-      }
-    },
-    "settings.days.count" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "variations" : { "plural" : {
-          "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld day" } },
-          "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld days" } }
-        } } },
-        "ru" : { "variations" : { "plural" : {
-          "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld день" } },
-          "few" : { "stringUnit" : { "state" : "translated", "value" : "%lld дня" } },
-          "many" : { "stringUnit" : { "state" : "translated", "value" : "%lld дней" } },
-          "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld дня" } }
-        } } }
-      }
-    },
-    "menu.checkUpdates" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Check for Updates…" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Проверить обновления…" } }
-      }
-    },
-    "module.clipboard.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Clipboard" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Буфер обмена" } }
-      }
-    },
-    "clipboard.kind.text" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Text" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Текст" } }
-      }
-    },
-    "clipboard.kind.url" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Link" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Ссылка" } }
-      }
-    },
-    "clipboard.kind.code" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Code" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Код" } }
-      }
-    },
-    "clipboard.kind.file" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "File" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Файл" } }
-      }
-    },
-    "clipboard.action.pin" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Pin" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Закрепить" } }
-      }
-    },
-    "clipboard.action.unpin" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Unpin" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Открепить" } }
-      }
-    },
-    "clipboard.action.delete" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Delete" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Удалить" } }
-      }
-    },
-    "clipboard.empty" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Copy something — it appears here.\nPassword manager entries are never captured." } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Скопируйте что-нибудь — оно появится здесь.\nЗаписи менеджеров паролей не сохраняются." } }
-      }
-    },
-    "clipboard.copied" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Copied" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Скопировано" } }
-      }
-    },
-    "settings.section.modules" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Sidebar Modules" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Модули сайдбара" } }
-      }
-    },
-    "settings.modules.moveUp" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Move up" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Выше" } }
-      }
-    },
-    "settings.modules.moveDown" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Move down" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Ниже" } }
-      }
-    },
-    "onboarding.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Welcome to PersonalIsland" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Добро пожаловать в PersonalIsland" } }
-      }
-    },
-    "onboarding.hover" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Move your pointer to the notch — the island opens on hover and closes when you leave." } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Наведите курсор на вырез экрана — остров раскроется сам и свернётся, когда вы уйдёте." } }
-      }
-    },
-    "onboarding.modules" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Five modules live in the sidebar: screenshots, media, AI agents, attention and clipboard history. Reorder them in Settings." } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "В сайдбаре пять модулей: скриншоты, музыка, AI-агенты, внимание и буфер обмена. Порядок меняется в Настройках." } }
-      }
-    },
-    "onboarding.agents" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open the AI Agents module and enable monitoring to watch Claude Code and Codex sessions in real time." } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Откройте модуль AI-агентов и включите мониторинг, чтобы видеть сессии Claude Code и Codex в реальном времени." } }
-      }
-    },
-    "onboarding.menubar" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "The ✦ icon in the menu bar holds language, settings and updates." } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Иконка ✦ в строке меню — язык, настройки и обновления." } }
-      }
-    },
-    "onboarding.start" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Get Started" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Начать" } }
-      }
-    },
-    "agent.action.openApp" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open the app running this session" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Открыть приложение этой сессии" } }
-      }
-    },
-    "menu.quit" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Quit PersonalIsland" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Завершить PersonalIsland" } }
-      }
-    },
-    "codex.health.unavailable" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Codex monitoring unavailable — local session data not found." } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Мониторинг Codex недоступен — локальные данные сессий не найдены." } }
-      }
-    },
-    "time.now" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "now" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "сейчас" } }
-      }
-    },
-    "time.minutesAgo" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%lldm ago" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "%lld мин назад" } }
-      }
-    },
-    "time.hoursAgo" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%lldh ago" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "%lld ч назад" } }
-      }
-    },
-    "time.daysAgo" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%lldd ago" } },
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "%lld дн назад" } }
+  "sourceLanguage": "en",
+  "version": "1.0",
+  "strings": {
+    "action.copyProjectPath": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy Project Path"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скопировать путь к проекту"
+          }
+        }
+      }
+    },
+    "action.openProject": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Project"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открыть проект"
+          }
+        }
+      }
+    },
+    "action.revealInFinder": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reveal in Finder"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Показать в Finder"
+          }
+        }
+      }
+    },
+    "agent.action.openApp": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open the app running this session"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открыть приложение этой сессии"
+          }
+        }
+      }
+    },
+    "agent.actions.help": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Project actions"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Действия с проектом"
+          }
+        }
+      }
+    },
+    "agent.activity.editing": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editing %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Изменяет %@"
+          }
+        }
+      }
+    },
+    "agent.activity.editingFiles": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editing files"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Изменяет файлы"
+          }
+        }
+      }
+    },
+    "agent.activity.fetching": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fetching a page"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Загружает страницу"
+          }
+        }
+      }
+    },
+    "agent.activity.mcp": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Using MCP tool"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Использует MCP-инструмент"
+          }
+        }
+      }
+    },
+    "agent.activity.reading": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Читает %@"
+          }
+        }
+      }
+    },
+    "agent.activity.readingFiles": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading files"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Читает файлы"
+          }
+        }
+      }
+    },
+    "agent.activity.running": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выполняет %@"
+          }
+        }
+      }
+    },
+    "agent.activity.runningCommand": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running a command"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выполняет команду"
+          }
+        }
+      }
+    },
+    "agent.activity.searching": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Searching"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ищет"
+          }
+        }
+      }
+    },
+    "agent.activity.subagent": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Working with subagent"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Работает с субагентом"
+          }
+        }
+      }
+    },
+    "agent.activity.thinking": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thinking…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Думает…"
+          }
+        }
+      }
+    },
+    "agent.activity.using": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Using %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Использует %@"
+          }
+        }
+      }
+    },
+    "agent.activity.waitingPermission": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waiting for your permission"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ожидает вашего разрешения"
+          }
+        }
+      }
+    },
+    "agent.activity.working": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Working"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Работает"
+          }
+        }
+      }
+    },
+    "agent.activity.writing": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Writing %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пишет %@"
+          }
+        }
+      }
+    },
+    "agent.activity.writingFiles": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Writing files"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пишет файлы"
+          }
+        }
+      }
+    },
+    "agent.clear": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Очистить"
+          }
+        }
+      }
+    },
+    "agent.clear.help": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove finished and idle sessions"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Убрать завершённые и неактивные сессии"
+          }
+        }
+      }
+    },
+    "agent.empty": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No agent sessions yet.\nStart Claude Code or Codex — sessions appear here."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сессий агентов пока нет.\nЗапустите Claude Code или Codex — они появятся здесь."
+          }
+        }
+      }
+    },
+    "agent.empty.any": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No agent sessions."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нет сессий агентов."
+          }
+        }
+      }
+    },
+    "agent.empty.provider": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No %@ sessions."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нет сессий %@."
+          }
+        }
+      }
+    },
+    "agent.failure.authentication": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "authentication"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ошибка авторизации"
+          }
+        }
+      }
+    },
+    "agent.failure.generic": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "error"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ошибка"
+          }
+        }
+      }
+    },
+    "agent.failure.network": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "network error"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ошибка сети"
+          }
+        }
+      }
+    },
+    "agent.failure.rateLimit": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "rate limit"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "лимит запросов"
+          }
+        }
+      }
+    },
+    "agent.failure.server": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "server error"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ошибка сервера"
+          }
+        }
+      }
+    },
+    "agent.repair": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repair"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Починить"
+          }
+        }
+      }
+    },
+    "agent.sessions.count": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld session"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld sessions"
+                }
+              }
+            }
+          }
+        },
+        "ru": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld сессия"
+                }
+              },
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld сессии"
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld сессий"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld сессии"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "agent.setup.description": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monitor Claude Code and Codex sessions in real time."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Мониторинг сессий Claude Code и Codex в реальном времени."
+          }
+        }
+      }
+    },
+    "agent.setup.enable": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable Agent Monitoring"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Включить мониторинг агентов"
+          }
+        }
+      }
+    },
+    "agent.state.failed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ошибка"
+          }
+        }
+      }
+    },
+    "agent.state.finished": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finished"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Завершено"
+          }
+        }
+      }
+    },
+    "agent.state.idle": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Idle"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ожидание"
+          }
+        }
+      }
+    },
+    "agent.state.needsPermission": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Needs permission"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Требуется разрешение"
+          }
+        }
+      }
+    },
+    "agent.state.stale": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No recent activity"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нет активности"
+          }
+        }
+      }
+    },
+    "agent.state.working": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Working"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выполняется"
+          }
+        }
+      }
+    },
+    "agent.subagents.count": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld subagent"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld subagents"
+                }
+              }
+            }
+          }
+        },
+        "ru": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld субагент"
+                }
+              },
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld субагента"
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld субагентов"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld субагента"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "agent.tab.all": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Все"
+          }
+        }
+      }
+    },
+    "agent.tab.allProviders": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All providers"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Все провайдеры"
+          }
+        }
+      }
+    },
+    "attention.action.dismiss": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dismiss"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скрыть"
+          }
+        }
+      }
+    },
+    "attention.action.markRead": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mark as Read"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отметить как прочитанное"
+          }
+        }
+      }
+    },
+    "attention.badge.help": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Needs your attention"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Требуется ваше внимание"
+          }
+        }
+      }
+    },
+    "attention.clearRead": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear Read"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Очистить прочитанные"
+          }
+        }
+      }
+    },
+    "attention.detail.finished": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finished"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Завершено"
+          }
+        }
+      }
+    },
+    "attention.detail.finishedIn": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finished in %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Завершено за %@"
+          }
+        }
+      }
+    },
+    "attention.empty.allClear": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All clear"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Всё спокойно"
+          }
+        }
+      }
+    },
+    "attention.empty.noSources": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No attention sources enabled"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Источники уведомлений не включены"
+          }
+        }
+      }
+    },
+    "attention.filter.all": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Все"
+          }
+        }
+      }
+    },
+    "attention.filter.unread": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unread"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Непрочитанные"
+          }
+        }
+      }
+    },
+    "attention.unread.count": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld unread"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld unread"
+                }
+              }
+            }
+          }
+        },
+        "ru": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld непрочитанное"
+                }
+              },
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld непрочитанных"
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld непрочитанных"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld непрочитанных"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "clipboard.action.delete": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Удалить"
+          }
+        }
+      }
+    },
+    "clipboard.action.pin": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pin"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Закрепить"
+          }
+        }
+      }
+    },
+    "clipboard.action.unpin": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unpin"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открепить"
+          }
+        }
+      }
+    },
+    "clipboard.copied": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copied"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скопировано"
+          }
+        }
+      }
+    },
+    "clipboard.empty": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy something — it appears here.\nPassword manager entries are never captured."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скопируйте что-нибудь — оно появится здесь.\nЗаписи менеджеров паролей не сохраняются."
+          }
+        }
+      }
+    },
+    "clipboard.kind.code": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Code"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Код"
+          }
+        }
+      }
+    },
+    "clipboard.kind.file": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "File"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Файл"
+          }
+        }
+      }
+    },
+    "clipboard.kind.text": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Text"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Текст"
+          }
+        }
+      }
+    },
+    "clipboard.kind.url": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Link"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ссылка"
+          }
+        }
+      }
+    },
+    "codex.health.unavailable": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Codex monitoring unavailable — local session data not found."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Мониторинг Codex недоступен — локальные данные сессий не найдены."
+          }
+        }
+      }
+    },
+    "media.next": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Next track"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Следующий трек"
+          }
+        }
+      }
+    },
+    "media.nothingPlaying": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nothing Playing"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ничего не играет"
+          }
+        }
+      }
+    },
+    "media.pause": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pause"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пауза"
+          }
+        }
+      }
+    },
+    "media.play": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Воспроизвести"
+          }
+        }
+      }
+    },
+    "media.previous": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Previous track"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Предыдущий трек"
+          }
+        }
+      }
+    },
+    "media.progress": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Playback progress"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Прогресс воспроизведения"
+          }
+        }
+      }
+    },
+    "menu.checkUpdates": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check for Updates…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Проверить обновления…"
+          }
+        }
+      }
+    },
+    "menu.language": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Language"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Язык"
+          }
+        }
+      }
+    },
+    "menu.language.system": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "System"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Системный"
+          }
+        }
+      }
+    },
+    "menu.openIsland": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Island"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открыть остров"
+          }
+        }
+      }
+    },
+    "menu.quit": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quit PersonalIsland"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Завершить PersonalIsland"
+          }
+        }
+      }
+    },
+    "menu.settings": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Настройки…"
+          }
+        }
+      }
+    },
+    "module.agents.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AI Agents"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AI-агенты"
+          }
+        }
+      }
+    },
+    "module.attention.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Attention"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Внимание"
+          }
+        }
+      }
+    },
+    "module.clipboard.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipboard"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Буфер обмена"
+          }
+        }
+      }
+    },
+    "module.nowPlaying.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Now Playing"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сейчас играет"
+          }
+        }
+      }
+    },
+    "module.screenshots.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Screenshot Buffer"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Буфер скриншотов"
+          }
+        }
+      }
+    },
+    "onboarding.agents": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open the AI Agents module and enable monitoring to watch Claude Code and Codex sessions in real time."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Откройте модуль AI-агентов и включите мониторинг, чтобы видеть сессии Claude Code и Codex в реальном времени."
+          }
+        }
+      }
+    },
+    "onboarding.hover": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move your pointer to the notch — the island opens on hover and closes when you leave."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Наведите курсор на вырез экрана — остров раскроется сам и свернётся, когда вы уйдёте."
+          }
+        }
+      }
+    },
+    "onboarding.menubar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The ✦ icon in the menu bar holds language, settings and updates."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Иконка ✦ в строке меню — язык, настройки и обновления."
+          }
+        }
+      }
+    },
+    "onboarding.modules": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Five modules live in the sidebar: screenshots, media, AI agents, attention and clipboard history. Reorder them in Settings."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В сайдбаре пять модулей: скриншоты, музыка, AI-агенты, внимание и буфер обмена. Порядок меняется в Настройках."
+          }
+        }
+      }
+    },
+    "onboarding.start": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get Started"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Начать"
+          }
+        }
+      }
+    },
+    "onboarding.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Welcome to PersonalIsland"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Добро пожаловать в PersonalIsland"
+          }
+        }
+      }
+    },
+    "screenshots.clearSelection": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear Selection"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Снять выделение"
+          }
+        }
+      }
+    },
+    "screenshots.copy": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скопировать"
+          }
+        }
+      }
+    },
+    "screenshots.empty": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Take a screenshot (⌘⇧3 / ⌘⇧4)\nor copy an image — it appears here."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сделайте скриншот (⌘⇧3 / ⌘⇧4)\nили скопируйте изображение — оно появится здесь."
+          }
+        }
+      }
+    },
+    "screenshots.open": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открыть"
+          }
+        }
+      }
+    },
+    "screenshots.quickLook": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quick Look"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Быстрый просмотр"
+          }
+        }
+      }
+    },
+    "screenshots.remove": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove from Buffer"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Убрать из буфера"
+          }
+        }
+      }
+    },
+    "screenshots.selected": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selected: %lld"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выбрано: %lld"
+          }
+        }
+      }
+    },
+    "settings.agents.autoClear": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auto-clear finished after"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Автоочистка завершённых через"
+          }
+        }
+      }
+    },
+    "settings.attention.retention": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep history"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Хранить историю"
+          }
+        }
+      }
+    },
+    "settings.days.count": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld day"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld days"
+                }
+              }
+            }
+          }
+        },
+        "ru": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld день"
+                }
+              },
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld дня"
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld дней"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld дня"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "settings.empty": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nothing to configure yet."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пока нечего настраивать."
+          }
+        }
+      }
+    },
+    "settings.island.collapseGrace": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close delay"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Задержка сворачивания"
+          }
+        }
+      }
+    },
+    "settings.island.expandDelay": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hover delay"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Задержка раскрытия"
+          }
+        }
+      }
+    },
+    "settings.island.hoverOpen": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open on hover"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Раскрывать при наведении"
+          }
+        }
+      }
+    },
+    "settings.island.showTimer": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show the system timer"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Показывать системный таймер"
+          }
+        }
+      }
+    },
+    "settings.items.count": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld item"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld items"
+                }
+              }
+            }
+          }
+        },
+        "ru": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld элемент"
+                }
+              },
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld элемента"
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld элементов"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld элемента"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "settings.launchAtLogin": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Launch at login"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Запускать при входе"
+          }
+        }
+      }
+    },
+    "settings.modules.moveDown": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move down"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ниже"
+          }
+        }
+      }
+    },
+    "settings.modules.moveUp": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move up"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выше"
+          }
+        }
+      }
+    },
+    "settings.screenshots.limit": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buffer size"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Размер буфера"
+          }
+        }
+      }
+    },
+    "settings.seconds.suffix": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "s"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "с"
+          }
+        }
+      }
+    },
+    "settings.section.general": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "General"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Основные"
+          }
+        }
+      }
+    },
+    "settings.section.island": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Island"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Остров"
+          }
+        }
+      }
+    },
+    "settings.section.modules": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sidebar Modules"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Модули сайдбара"
+          }
+        }
+      }
+    },
+    "settings.section.notifications": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agent Notifications"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Уведомления агентов"
+          }
+        }
+      }
+    },
+    "settings.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PersonalIsland Settings"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Настройки PersonalIsland"
+          }
+        }
+      }
+    },
+    "time.daysAgo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lldd ago"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld дн назад"
+          }
+        }
+      }
+    },
+    "time.hoursAgo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lldh ago"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld ч назад"
+          }
+        }
+      }
+    },
+    "time.minutesAgo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lldm ago"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld мин назад"
+          }
+        }
+      }
+    },
+    "time.now": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "now"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "сейчас"
+          }
+        }
+      }
+    },
+    "timer.openClock": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Clock"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открыть Часы"
+          }
+        }
+      }
+    },
+    "timer.paused": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Timer paused"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Таймер на паузе"
+          }
+        }
+      }
+    },
+    "timer.running": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Timer"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Таймер"
+          }
+        }
       }
     }
   }

@@ -21,8 +21,8 @@ enum IslandMetrics {
 
     static let collapsedTopRadius: CGFloat = 6
     static let collapsedBottomRadius: CGFloat = 14
-    static let compactTopRadius: CGFloat = 8
-    static let compactBottomRadius: CGFloat = 16
+    static let compactTopRadius: CGFloat = 6
+    static let compactBottomRadius: CGFloat = 14
     static let expandedTopRadius: CGFloat = 19
     static let expandedBottomRadius: CGFloat = 24
 

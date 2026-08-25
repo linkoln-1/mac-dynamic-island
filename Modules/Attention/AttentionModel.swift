@@ -87,18 +87,24 @@ struct CompactSurfacePlan: Equatable {
     var showsMicroCluster: Bool
     var showsAgentSummary: Bool
     var showsAttentionBadge: Bool
+    var showsTimer: Bool
+    var showsAgentMicro: Bool
 
-    var isEmpty: Bool { !showsMedia && !showsAgentSummary && !showsAttentionBadge }
+    var isEmpty: Bool {
+        !showsMedia && !showsAgentSummary && !showsAttentionBadge && !showsTimer
+    }
 
     static func plan(
-        hasMedia: Bool, hasAgentSummary: Bool, highPriorityCount: Int
+        hasMedia: Bool, hasAgentSummary: Bool, highPriorityCount: Int, hasTimer: Bool = false
     ) -> CompactSurfacePlan {
         let hasAttention = highPriorityCount > 0
         return CompactSurfacePlan(
             showsMedia: hasMedia,
-            showsMicroCluster: hasMedia && (hasAgentSummary || hasAttention),
+            showsMicroCluster: hasMedia && (hasAgentSummary || hasAttention || hasTimer),
             showsAgentSummary: !hasMedia && hasAgentSummary,
-            showsAttentionBadge: hasAttention
+            showsAttentionBadge: hasAttention,
+            showsTimer: hasTimer,
+            showsAgentMicro: hasMedia && (hasAgentSummary || hasAttention)
         )
     }
 }
