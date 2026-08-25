@@ -10,13 +10,19 @@
 </p>
 
 <p align="center">
-  <img src="docs/assets/island-compact.png" alt="Compact island around the notch: agent counts and working indicator" />
-  <br/><sub>Compact mode: one Claude Code and one Codex session working, right around the notch.</sub>
+  <img src="docs/assets/island-hover.gif" width="900" alt="Hovering the notch unfolds the island into the media module, then the agent monitor" />
+  <br/><sub>Rest the pointer on the notch and the island unfolds. Leave, and it folds back.</sub>
 </p>
 
 Rest your pointer on the notch and a black island unfolds — a modular workspace
 that stays out of your way and never steals keyboard focus from the app you're
 typing in.
+
+<p align="center">
+  <img src="docs/assets/island-compact.png" alt="Compact bar: artwork, transport controls, a running timer and one active agent session" />
+  <br/><sub>Compact mode: artwork and transport controls hug the left edge, a running
+  Clock timer and the agent count sit right behind the notch.</sub>
+</p>
 
 ## Modules
 
@@ -27,6 +33,18 @@ typing in.
 | 📸 | **Screenshot Buffer** | Every screenshot and copied image lands in a buffer with Finder-style multi-item drag-out. Originals are never deleted. |
 | 📋 | **Clipboard** | In-memory history of what you copy — text, links, code, files — with pinning and type filters. Password-manager entries are never captured. |
 | 🎵 | **Now Playing** | Global media card with artwork and transport controls, including browser tabs (Arc) when macOS won't expose the session. |
+| ⏱ | **Timer** | The macOS Clock timer, without a tab of its own: a ring and countdown in the compact bar, a capsule in the expanded view that opens Clock. Nothing at all when no timer runs. |
+
+<p align="center">
+  <img src="docs/assets/island-expanded.png" width="820" alt="Expanded island showing the Now Playing module" />
+  <br/><sub>Expanded: the sidebar switches modules, the timer keeps its place in the notch strip.</sub>
+</p>
+
+<p align="center">
+  <img src="docs/assets/island-agents.png" width="820" alt="Expanded island showing the AI agent monitor with a Claude Code session card" />
+  <br/><sub>The agent monitor, shown here in Russian — the whole UI, tooltips and
+  notifications ship in English and Русский, switchable live from the menu bar.</sub>
+</p>
 
 ## Highlights
 
@@ -37,15 +55,19 @@ typing in.
   notifications included.
 - **Settings**: hover behavior, per-kind and per-provider agent notifications,
   launch at login, buffer sizes, retention, sidebar module order.
+- **The Clock timer rides along** — a ring and countdown in the bar, no extra tab.
 - Auto-updates via Sparkle.
 
 ## Install
 
-Grab the notarized DMG from [Releases](https://github.com/linkoln-1/mac-dynamic-island/releases),
-drag PersonalIsland to Applications, launch. macOS 15+, Apple Silicon.
+[**Download PersonalIsland 1.1.0**](https://github.com/linkoln-1/mac-dynamic-island/releases/latest)
+— open the DMG, drag PersonalIsland to Applications, launch. It is Developer ID
+signed and notarized by Apple, so it opens with a normal double click, and it
+updates itself through Sparkle.
 
-The app is distributed outside the App Store (it relies on private APIs the
-sandbox forbids) and is Developer ID signed and notarized.
+Requirements: **macOS 15 or later**, on a **MacBook with a notch** — the island
+is drawn around the notch, so that is where it lives. The app is distributed
+outside the App Store because it relies on private APIs the sandbox forbids.
 
 ## Build from source
 
@@ -59,7 +81,7 @@ xcodebuild -project PersonalIsland.xcodeproj -scheme PersonalIsland \
 ```
 
 Tests: `xcodebuild -project PersonalIsland.xcodeproj -scheme PersonalIsland test`
-(220+ unit and interaction tests).
+(237 unit and interaction tests).
 
 ## How the agent monitor works
 
