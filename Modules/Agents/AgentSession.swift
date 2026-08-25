@@ -38,6 +38,7 @@ struct AgentSession: Identifiable, Equatable {
     var branch: String?
     var projectPath: String?
     var hostAppPath: String?
+    var agentPID: Int32?
 
     var state: AgentSessionState = .idle
     var activity: String = ""

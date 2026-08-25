@@ -76,6 +76,25 @@ final class BrowserMediaNormalizationTests: XCTestCase {
         XCTAssertEqual(snapshots.first?.tabID, "TAB-A")
         XCTAssertEqual(snapshots.first?.title, "X")
     }
+
+    func testProbeOutputParsesArcDoubleEncodedPayload() {
+        let payload = #""{\"media\":[{\"paused\":false,\"ended\":false,\"ct\":135,\"dur\":213,\"rs\":4,\"muted\":false,\"rate\":1}],\"meta\":{\"title\":\"Track\",\"artist\":\"Band\"},\"dt\":\"Track - YouTube\"}""#
+        let snapshots = ArcBrowserNowPlayingProvider.parseProbeOutput("TAB-B\t" + payload + "\n")
+        XCTAssertEqual(snapshots.count, 1, "Arc hands back the JS result as a JSON-encoded string")
+        XCTAssertEqual(snapshots.first?.title, "Track")
+        XCTAssertEqual(snapshots.first?.artist, "Band")
+        XCTAssertEqual(snapshots.first?.isPlaying, true)
+        XCTAssertEqual(snapshots.first?.elapsed, 135)
+    }
+
+    func testProbeScriptSeparatorSurvivesArcTerminology() {
+        let script = ArcBrowserNowPlayingProvider.probeScript(mediaHosts: ["youtube.com"])
+        XCTAssertFalse(
+            script.contains("& tab &"),
+            "inside a tell block `tab` resolves to Arc's tab class, not a tab character"
+        )
+        XCTAssertTrue(script.contains("\t"))
+    }
 }
 
 final class BrowserCandidateRankingTests: XCTestCase {

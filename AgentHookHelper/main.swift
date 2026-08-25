@@ -20,6 +20,7 @@ func run() {
           var event = AgentHookPayloadMapper.wireEvent(provider: provider, payload: payload)
     else { exit(0) }
     event.hostAppPath = hostAppPath()
+    event.agentPID = agentProcessPID()
     guard let encoded = try? JSONEncoder().encode(event) else { exit(0) }
 
     if !sendOverSocket(encoded) {
@@ -84,6 +85,21 @@ private func parentPID(of pid: pid_t) -> pid_t? {
     guard sysctl(&mib, 4, &info, &size, nil, 0) == 0, size > 0 else { return nil }
     let parent = info.kp_eproc.e_ppid
     return parent > 0 ? parent : nil
+}
+
+private func agentProcessPID() -> Int32? {
+    var pid = getppid()
+    for _ in 0..<20 {
+        guard pid > 1 else { return nil }
+        var buffer = [CChar](repeating: 0, count: 4096)
+        if proc_pidpath(pid, &buffer, UInt32(buffer.count)) > 0 {
+            let path = String(cString: buffer).lowercased()
+            if path.contains("claude") || path.contains("codex") { return pid }
+        }
+        guard let parent = parentPID(of: pid) else { return nil }
+        pid = parent
+    }
+    return nil
 }
 
 private func hostAppPath() -> String? {

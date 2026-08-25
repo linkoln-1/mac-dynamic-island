@@ -40,15 +40,27 @@ final class AgentStore: ObservableObject {
     private let policy: Policy
     var liveFinishedRetention: (() -> TimeInterval)?
     private let now: () -> Date
+    private let isProcessAlive: (Int32) -> Bool
     private let projectResolver = AgentProjectResolver()
     private var seenDedupKeys: [String] = []
     private var seenDedupSet: Set<String> = []
 
     private var notifiedPermissionCycles: Set<String> = []
 
-    init(policy: Policy = Policy(), now: @escaping () -> Date = Date.init) {
+    init(
+        policy: Policy = Policy(),
+        now: @escaping () -> Date = Date.init,
+        isProcessAlive: @escaping (Int32) -> Bool = AgentStore.processIsAlive
+    ) {
         self.policy = policy
         self.now = now
+        self.isProcessAlive = isProcessAlive
+    }
+
+    static func processIsAlive(_ pid: Int32) -> Bool {
+        guard pid > 1 else { return false }
+        if kill(pid, 0) == 0 { return true }
+        return errno == EPERM
     }
 
     var orderedSessions: [AgentSession] {
@@ -76,6 +88,9 @@ final class AgentStore: ObservableObject {
         session.lastActivityAt = moment
         if let hostAppPath = event.hostAppPath {
             session.hostAppPath = hostAppPath
+        }
+        if let agentPID = event.agentPID {
+            session.agentPID = agentPID
         }
         let previousState = session.state
         let previousCycleID = session.cycleID
@@ -114,9 +129,18 @@ final class AgentStore: ObservableObject {
             emitPermission(session)
 
         case "Notification":
-            if event.notificationType == "permission_prompt" {
+            switch event.notificationType {
+            case "permission_prompt", "worker_permission_prompt", "elicitation_response":
                 session.state = .needsPermission
                 emitPermission(session)
+            case "idle_prompt", "agent_needs_input":
+                if session.state == .working {
+                    session.state = .idle
+                    session.activity = ""
+                    session.cycleStartedAt = nil
+                }
+            default:
+                break
             }
 
         case "SubagentStart":
@@ -194,6 +218,14 @@ final class AgentStore: ObservableObject {
         let moment = now()
         let finishedRetention = liveFinishedRetention?() ?? policy.finishedRetention
         for (key, var session) in sessions {
+            if let pid = session.agentPID, !session.hasEnded, !isProcessAlive(pid) {
+                session.hasEnded = true
+                session.activity = ""
+                if session.state == .working || session.state == .needsPermission {
+                    session.state = .idle
+                }
+                sessions[key] = session
+            }
             switch session.state {
             case .finished, .failed:
                 let anchor = session.finishedAt ?? session.lastActivityAt

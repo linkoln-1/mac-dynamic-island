@@ -121,7 +121,7 @@ actor ArcBrowserNowPlayingProvider {
                     if \(hostConditions) then
                         try
                             set probeResult to execute t javascript "\(escapedForAppleScript(tabProbeJS))"
-                            set output to output & (id of t) & tab & probeResult & linefeed
+                            set output to output & (id of t) & "\t" & probeResult & linefeed
                         end try
                     end if
                 end repeat
@@ -157,11 +157,23 @@ actor ArcBrowserNowPlayingProvider {
     static func parseProbeOutput(_ stdout: String, sampledAt: Date = Date()) -> [BrowserMediaSnapshot] {
         stdout.split(separator: "\n").compactMap { line in
             let parts = line.split(separator: "\t", maxSplits: 1)
-            guard parts.count == 2, let json = parts[1].data(using: .utf8) else { return nil }
+            guard parts.count == 2, let json = unwrapJSONPayload(String(parts[1])) else { return nil }
             return BrowserMediaNormalizer.normalize(
                 tabID: String(parts[0]), probeJSON: json, sampledAt: sampledAt
             )
         }
+    }
+
+    static func unwrapJSONPayload(_ raw: String) -> Data? {
+        let trimmed = raw.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return nil }
+        if trimmed.hasPrefix("{") { return trimmed.data(using: .utf8) }
+        guard let data = trimmed.data(using: .utf8),
+              let unwrapped = try? JSONSerialization.jsonObject(
+                  with: data, options: [.fragmentsAllowed]
+              ) as? String
+        else { return nil }
+        return unwrapped.data(using: .utf8)
     }
 
     struct ScriptResult {

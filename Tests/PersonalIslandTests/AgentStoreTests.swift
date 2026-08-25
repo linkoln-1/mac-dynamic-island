@@ -27,18 +27,100 @@ final class AgentStoreTests: XCTestCase {
     private func event(
         _ name: String, provider: AgentProviderKind = .claude, session: String = "aaaa-bbbb-cccc-A72F",
         cwd: String = "/tmp/projectx", tool: String? = nil, detail: String? = nil,
-        notificationType: String? = nil, dedup: String? = nil
+        notificationType: String? = nil, dedup: String? = nil, pid: Int32? = nil
     ) -> AgentWireEvent {
         eventCounter += 1
         return AgentWireEvent(
             provider: provider, event: name, sessionID: session,
             timestamp: virtualNow.timeIntervalSince1970, cwd: cwd,
             toolName: tool, activityDetail: detail, notificationType: notificationType,
-            dedupKey: dedup ?? "k\(eventCounter)"
+            dedupKey: dedup ?? "k\(eventCounter)", agentPID: pid
         )
     }
 
     private var session: AgentSession? { store.orderedSessions.first }
+
+    func testNotificationTypesDriveAttentionAndIdle() {
+        store.ingest(event("UserPromptSubmit"))
+        store.ingest(event("Notification", notificationType: "worker_permission_prompt"))
+        XCTAssertEqual(session?.state, .needsPermission, "a worker asking for permission needs attention")
+        XCTAssertEqual(received.filter { $0.kind == .needsPermission }.count, 1)
+
+        store.ingest(event("PreToolUse", tool: "Bash", detail: "ls"))
+        XCTAssertEqual(session?.state, .working)
+
+        store.ingest(event("Notification", notificationType: "idle_prompt"))
+        XCTAssertEqual(session?.state, .idle, "an agent waiting for input is not working")
+        XCTAssertEqual(store.compactSummary.working, 0)
+
+        store.ingest(event("Notification", notificationType: "agent_needs_input"))
+        XCTAssertEqual(session?.state, .idle)
+
+        store.ingest(event("Notification", notificationType: "elicitation_response"))
+        XCTAssertEqual(session?.state, .needsPermission)
+    }
+
+    func testDeadAgentProcessStopsLookingLikeWork() {
+        var alive = true
+        let liveStore = AgentStore(
+            policy: .init(finishedRetention: 60, staleThreshold: 1800, minimumNotifiedCycle: 3),
+            now: { self.virtualNow },
+            isProcessAlive: { _ in alive }
+        )
+        liveStore.ingest(event("SessionStart", pid: 4242))
+        liveStore.ingest(event("UserPromptSubmit", pid: 4242))
+        XCTAssertEqual(liveStore.orderedSessions.first?.state, .working)
+
+        liveStore.sweep()
+        XCTAssertEqual(liveStore.orderedSessions.first?.state, .working, "a live agent keeps working")
+
+        alive = false
+        liveStore.sweep()
+        XCTAssertEqual(
+            liveStore.orderedSessions.first?.state, .idle,
+            "a dead agent must not keep claiming it is working"
+        )
+        XCTAssertEqual(liveStore.compactSummary.working, 0)
+
+        advance(120)
+        liveStore.sweep()
+        XCTAssertTrue(liveStore.sessions.isEmpty, "a dead session is cleaned up")
+    }
+
+    func testRepeatedCyclesAreNotSwallowedAsDuplicates() {
+        store.ingest(event("SessionStart"))
+        store.ingest(event("UserPromptSubmit"))
+        advance(5)
+        store.ingest(event("Stop"))
+        XCTAssertEqual(session?.state, .finished)
+
+        advance(5)
+        store.ingest(event("UserPromptSubmit"))
+        XCTAssertEqual(session?.state, .working, "a second turn must start a new cycle")
+        XCTAssertEqual(session?.cycleID, 2)
+
+        advance(5)
+        store.ingest(event("Stop"))
+        XCTAssertEqual(session?.state, .finished, "a second Stop must end the second cycle")
+        XCTAssertEqual(received.filter { $0.kind == .finished }.count, 2)
+    }
+
+    func testPermissionIsAnnouncedOncePerCycleButEveryCycle() {
+        store.ingest(event("UserPromptSubmit"))
+        store.ingest(event("PermissionRequest", tool: "Bash", detail: "rm -rf build"))
+        store.ingest(event("PermissionRequest", tool: "Bash", detail: "rm -rf build"))
+        XCTAssertEqual(received.filter { $0.kind == .needsPermission }.count, 1)
+
+        advance(5)
+        store.ingest(event("Stop"))
+        advance(5)
+        store.ingest(event("UserPromptSubmit"))
+        store.ingest(event("PermissionRequest", tool: "Bash", detail: "rm -rf build"))
+        XCTAssertEqual(
+            received.filter { $0.kind == .needsPermission }.count, 2,
+            "a new cycle asking for permission must be announced again"
+        )
+    }
 
     func testLifecycleStateMachine() {
         store.ingest(event("SessionStart"))

@@ -48,9 +48,30 @@ final class AgentActivityFormatterTests: XCTestCase {
             "hook_event_name": "PreToolUse", "session_id": "s1",
             "tool_name": "Bash", "tool_input": ["command": "ls"], "cwd": "/tmp",
         ]
-        let one = AgentHookPayloadMapper.wireEvent(provider: .claude, payload: payload)
-        let two = AgentHookPayloadMapper.wireEvent(provider: .claude, payload: payload)
-        XCTAssertEqual(one?.dedupKey, two?.dedupKey, "retries produce identical identity")
+        let one = AgentHookPayloadMapper.wireEvent(
+            provider: .claude, payload: payload, invocationToken: "pid-1"
+        )
+        let sameInvocation = AgentHookPayloadMapper.wireEvent(
+            provider: .claude, payload: payload, invocationToken: "pid-1"
+        )
+        XCTAssertEqual(one?.dedupKey, sameInvocation?.dedupKey, "one invocation keeps one identity")
+
+        let laterInvocation = AgentHookPayloadMapper.wireEvent(
+            provider: .claude, payload: payload, invocationToken: "pid-2"
+        )
+        XCTAssertNotEqual(
+            one?.dedupKey, laterInvocation?.dedupKey,
+            "a repeated hook event is a distinct event, not a duplicate"
+        )
+
+        let first = AgentHookPayloadMapper.defaultInvocationToken(
+            pid: 42, now: Date(timeIntervalSince1970: 100)
+        )
+        let second = AgentHookPayloadMapper.defaultInvocationToken(
+            pid: 42, now: Date(timeIntervalSince1970: 100.5)
+        )
+        XCTAssertNotEqual(first, second)
+
         XCTAssertEqual(one?.activityDetail, "ls")
         XCTAssertNil(AgentHookPayloadMapper.wireEvent(provider: .claude, payload: ["foo": 1]))
     }

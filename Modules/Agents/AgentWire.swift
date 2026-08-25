@@ -36,6 +36,7 @@ struct AgentWireEvent: Codable, Equatable {
 
     var dedupKey: String
     var hostAppPath: String? = nil
+    var agentPID: Int32? = nil
 
     enum CodingKeys: String, CodingKey {
         case v, provider, event
@@ -47,6 +48,7 @@ struct AgentWireEvent: Codable, Equatable {
         case notificationType = "nt"
         case dedupKey = "uid"
         case hostAppPath = "app"
+        case agentPID = "pid"
     }
 }
 
@@ -70,10 +72,18 @@ enum AgentSpoolPolicy {
 enum AgentHookPayloadMapper {
     static let maxDetailLength = 100
 
+    static func defaultInvocationToken(
+        pid: Int32 = ProcessInfo.processInfo.processIdentifier,
+        now: Date = Date()
+    ) -> String {
+        String(format: "%d-%.4f", pid, now.timeIntervalSince1970)
+    }
+
     static func wireEvent(
         provider: AgentProviderKind,
         payload: [String: Any],
-        now: Date = Date()
+        now: Date = Date(),
+        invocationToken: String = defaultInvocationToken()
     ) -> AgentWireEvent? {
         guard let event = payload["hook_event_name"] as? String,
               let sessionID = payload["session_id"] as? String,
@@ -90,6 +100,7 @@ enum AgentHookPayloadMapper {
             toolName ?? "", detail ?? "", notificationType ?? "",
             (payload["turn_id"] as? String) ?? "",
             String(describing: payload["stop_hook_active"] ?? ""),
+            invocationToken,
         ].joined(separator: "|")
 
         return AgentWireEvent(
