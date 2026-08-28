@@ -29,6 +29,10 @@ staples → prints the Sparkle `sign_update` signature.
 Then:
 1. Add a release `<item>` to `appcast.xml` with the printed `sparkle:edSignature`,
    `length`, version and the GitHub download URL; commit + push.
+   `sparkle:version` is the **build number** (`CURRENT_PROJECT_VERSION` in
+   `project.yml`, bumped by one for every release), not the marketing version:
+   Sparkle compares it against the installed app's `CFBundleVersion`, so a
+   "1.1.1" there never beats an installed "2".
 2. `gh release create v1.0.0 build/PersonalIsland-1.0.0.dmg --title "PersonalIsland 1.0.0" --notes "..."`
 3. The appcast URL in the app points at raw.githubusercontent main/appcast.xml —
    existing users get the update automatically via Sparkle.
@@ -38,7 +42,7 @@ Appcast item template:
 ```xml
 <item>
   <title>1.0.1</title>
-  <sparkle:version>1.0.1</sparkle:version>
+  <sparkle:version>4</sparkle:version>
   <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
   <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
   <enclosure
