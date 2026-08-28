@@ -4,9 +4,26 @@
     <title>PersonalIsland Updates</title>
     <link>https://github.com/linkoln-1/mac-dynamic-island</link>
     <item>
+      <title>1.1.1</title>
+      <pubDate>Fri, 28 Aug 2026 17:48:35 +0300</pubDate>
+      <sparkle:version>3</sparkle:version>
+      <sparkle:shortVersionString>1.1.1</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[
+        <ul>
+          <li>Now Playing keeps the artwork when Arc moves a video to the background or into picture-in-picture, and brings it back when the tab returns.</li>
+        </ul>
+      ]]></description>
+      <enclosure
+        url="https://github.com/linkoln-1/mac-dynamic-island/releases/download/v1.1.1/PersonalIsland-1.1.1.dmg"
+        length="3740140"
+        type="application/octet-stream"
+        sparkle:edSignature="QxQ2ndx1NnOfjXOYcAldwihUlfjOQjdASRle6fW6QSaqVjr8rk4kGJW7OAKe39ry8YVuM2jyEP45dLMW16zIAw==" />
+    </item>
+    <item>
       <title>1.1.0</title>
       <pubDate>Tue, 25 Aug 2026 20:32:48 +0300</pubDate>
-      <sparkle:version>1.1.0</sparkle:version>
+      <sparkle:version>2</sparkle:version>
       <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
       <description><![CDATA[
