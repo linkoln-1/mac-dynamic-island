@@ -1,3 +1,4 @@
+import AppKit
 import XCTest
 @testable import PersonalIsland
 
@@ -118,5 +119,51 @@ final class NowPlayingArbiterTests: XCTestCase {
         arbiter.ingestArc(nil)
         advance(3.5)
         XCTAssertNil(arbiter.tick().state)
+    }
+
+    private func image() -> NSImage { NSImage(size: NSSize(width: 1, height: 1)) }
+
+    func testArcFallbackInheritsArtworkSeenViaMediaRemote() {
+        let art = image()
+        var withArt = mrState("Same Song")
+        withArt.artwork = art
+        arbiter.ingestMediaRemote(withArt)
+        advance(1)
+        arbiter.ingestMediaRemote(nil)
+        advance(2)
+
+        let output = arbiter.ingestArc(arcState("Same Song"))
+
+        XCTAssertEqual(output.source, .arcBrowser)
+        XCTAssertTrue(output.state?.artwork === art, "artwork must survive the fall back to Arc")
+    }
+
+    func testMediaRemoteReturningWithoutArtworkKeepsRememberedArtwork() {
+        let art = image()
+        var withArt = mrState("Same Song")
+        withArt.artwork = art
+        arbiter.ingestMediaRemote(withArt)
+        advance(1)
+        arbiter.ingestMediaRemote(nil)
+        advance(4)
+        XCTAssertNil(arbiter.tick().state)
+
+        let output = arbiter.ingestMediaRemote(mrState("Same Song"))
+
+        XCTAssertEqual(output.source, .mediaRemote)
+        XCTAssertTrue(output.state?.artwork === art, "artwork must return with the same item")
+    }
+
+    func testDifferentItemDoesNotInheritArtwork() {
+        var withArt = mrState("First Song")
+        withArt.artwork = image()
+        arbiter.ingestMediaRemote(withArt)
+        advance(1)
+        arbiter.ingestMediaRemote(nil)
+        advance(2)
+
+        let output = arbiter.ingestArc(arcState("Second Song"))
+
+        XCTAssertNil(output.state?.artwork)
     }
 }

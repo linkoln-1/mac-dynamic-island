@@ -21,6 +21,7 @@ final class NowPlayingArbiter {
     private var mediaRemoteState: NowPlayingState?
     private var arcState: NowPlayingState?
     private var arcSampledAt: Date?
+    private var artworkMemory = NowPlayingArtworkMemory()
 
     private var authority: NowPlayingSource?
     private var lastSwitchAt: Date?
@@ -37,13 +38,13 @@ final class NowPlayingArbiter {
 
     @discardableResult
     func ingestMediaRemote(_ state: NowPlayingState?) -> Output {
-        mediaRemoteState = (state?.isEmpty == false) ? state : nil
+        mediaRemoteState = state.flatMap(withRememberedArtwork)
         return evaluate()
     }
 
     @discardableResult
     func ingestArc(_ snapshot: NowPlayingState?) -> Output {
-        if let snapshot, !snapshot.isEmpty {
+        if let snapshot = snapshot.flatMap(withRememberedArtwork) {
             arcState = snapshot
             arcSampledAt = now()
         } else {
@@ -56,6 +57,12 @@ final class NowPlayingArbiter {
     @discardableResult
     func tick() -> Output {
         evaluate()
+    }
+
+    private func withRememberedArtwork(_ state: NowPlayingState) -> NowPlayingState? {
+        guard !state.isEmpty else { return nil }
+        artworkMemory.remember(state)
+        return artworkMemory.restoring(state)
     }
 
     private func evaluate() -> Output {

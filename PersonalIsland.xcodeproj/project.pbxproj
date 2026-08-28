@@ -32,6 +32,7 @@
 		4915C9EDD4B67E16FE958504 /* AppLanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4D77AC9E97FB79BF75E758 /* AppLanguageManager.swift */; };
 		4964A8E0B7BFCD2A5AC90235 /* NotchGeometryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25D4683065D8AE0C258723B /* NotchGeometryProvider.swift */; };
 		49FEBED882A69B7B936F2E2B /* TimerChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6141BC8ED28956AC0531BB7A /* TimerChipView.swift */; };
+		4ADED0EFDCE2060BF448B6D9 /* NowPlayingArtworkMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B47D5C8EABD474051A7F4B /* NowPlayingArtworkMemory.swift */; };
 		4BBA055BE3A949DA7BD3FE32 /* CodexLocalSessionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8102A2B47212F4D4BB8FB4 /* CodexLocalSessionProvider.swift */; };
 		5489C2D92A773FBE7787F46B /* ClipboardHistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9DA08E29A6C80A42A0B797 /* ClipboardHistoryStore.swift */; };
 		54A421AC32E2FE8D58881E49 /* ClipboardHistoryMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD87634E912916C9CB302D4 /* ClipboardHistoryMonitor.swift */; };
@@ -49,6 +50,7 @@
 		716CE89C9FCA395818B8C9B0 /* PersonalIslandApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF3FAC982606BEFEA1A3522 /* PersonalIslandApp.swift */; };
 		7351F338A9B62C771D6BCB6B /* AgentProviderIconResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686B0922BC6346FAEF3C77D8 /* AgentProviderIconResolver.swift */; };
 		760F008A49E903A2DDA48D17 /* SmokeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B6843701789644871251AA /* SmokeTests.swift */; };
+		7C4973BB89FBF64D79B1E787 /* NowPlayingArtworkMemoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6C0BE500E084C17DA0E46 /* NowPlayingArtworkMemoryTests.swift */; };
 		7FCD58A07D27E11FE37DFAE3 /* AttentionCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A138833916430A3CFF5CAD5 /* AttentionCenterView.swift */; };
 		7FF022C9367649A3218406AE /* ScreenshotBufferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832E1262072C16D4BF3A433C /* ScreenshotBufferTests.swift */; };
 		8444911270C3C3417D1D8E8D /* AgentEventReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58571834CB4FB9699FB8ECB3 /* AgentEventReceiver.swift */; };
@@ -195,6 +197,7 @@
 		7BB6C61BB65478DBEE84DD32 /* IslandState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IslandState.swift; sourceTree = "<group>"; };
 		7CD03347D4276C077C31AE75 /* LocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTests.swift; sourceTree = "<group>"; };
 		832E1262072C16D4BF3A433C /* ScreenshotBufferTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotBufferTests.swift; sourceTree = "<group>"; };
+		84B47D5C8EABD474051A7F4B /* NowPlayingArtworkMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingArtworkMemory.swift; sourceTree = "<group>"; };
 		88B802539C701481562FDF1F /* SidebarHitAlignmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarHitAlignmentTests.swift; sourceTree = "<group>"; };
 		8BFE4B23D76406B9785241DD /* AgentSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentSession.swift; sourceTree = "<group>"; };
 		8C4D77AC9E97FB79BF75E758 /* AppLanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLanguageManager.swift; sourceTree = "<group>"; };
@@ -238,6 +241,7 @@
 		F82EDB2A2FB130BABC70A2DF /* BrowserMediaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserMediaTests.swift; sourceTree = "<group>"; };
 		F8386C0FF7C82CCADE99EAE1 /* IslandRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IslandRootView.swift; sourceTree = "<group>"; };
 		F93BE3004118354F89DEFEB3 /* IslandHoverOpenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IslandHoverOpenTests.swift; sourceTree = "<group>"; };
+		FAA6C0BE500E084C17DA0E46 /* NowPlayingArtworkMemoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingArtworkMemoryTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,6 +281,7 @@
 				773E0DAE1E7562565E986EC7 /* BrowserMediaState.swift */,
 				21914DC191D2854AAD1CAFA0 /* MediaRemoteAdapterProvider.swift */,
 				E2EF24E5A66CAFB24B41B6A1 /* NowPlayingArbiter.swift */,
+				84B47D5C8EABD474051A7F4B /* NowPlayingArtworkMemory.swift */,
 				3A65FB2B5C27609361628349 /* NowPlayingCompactView.swift */,
 				96333B43336A192CA6F3F771 /* NowPlayingCoordinator.swift */,
 				497CB9F001701705FFCDDA54 /* NowPlayingProvider.swift */,
@@ -330,6 +335,7 @@
 				46F279889508523EB0020A30 /* MediaTimeFormatterTests.swift */,
 				A039260E1592B7879003E02C /* NotchGeometryTests.swift */,
 				A7387F03769A95F1D25872DC /* NowPlayingArbiterTests.swift */,
+				FAA6C0BE500E084C17DA0E46 /* NowPlayingArtworkMemoryTests.swift */,
 				F0B57E2448D2ECEB4C0203D8 /* NowPlayingMappingTests.swift */,
 				832E1262072C16D4BF3A433C /* ScreenshotBufferTests.swift */,
 				E3B207B34401BA665AE4D441 /* ScreenshotDragPayloadBuilderTests.swift */,
@@ -690,6 +696,7 @@
 				9A71CBAD1ED8AEA7E3982724 /* MediaTimeFormatterTests.swift in Sources */,
 				5E5C8FA5FC71ED0CA7CA1A2F /* NotchGeometryTests.swift in Sources */,
 				681A51121CBA4DAEE9733F07 /* NowPlayingArbiterTests.swift in Sources */,
+				7C4973BB89FBF64D79B1E787 /* NowPlayingArtworkMemoryTests.swift in Sources */,
 				B141798E30315CE5C2D1EE4A /* NowPlayingMappingTests.swift in Sources */,
 				7FF022C9367649A3218406AE /* ScreenshotBufferTests.swift in Sources */,
 				DD07C117113BE95DE8F75457 /* ScreenshotDragPayloadBuilderTests.swift in Sources */,
@@ -751,6 +758,7 @@
 				63BF9BB32D6FB824059AC12D /* NotchShape.swift in Sources */,
 				A7A4F47A4B7CE54A797F7BC6 /* NotchSpaceManager.swift in Sources */,
 				273C56A2C565E04B298AEAF6 /* NowPlayingArbiter.swift in Sources */,
+				4ADED0EFDCE2060BF448B6D9 /* NowPlayingArtworkMemory.swift in Sources */,
 				D8A35774EC48AE27A5160066 /* NowPlayingCompactView.swift in Sources */,
 				6847C748F8A39C8C78B02BAA /* NowPlayingCoordinator.swift in Sources */,
 				DFD3C7D0A43978820CF80C8D /* NowPlayingProvider.swift in Sources */,
@@ -805,7 +813,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_HARDENED_RUNTIME = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -817,7 +825,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lincode.PersonalIsland;
 				PRODUCT_NAME = PersonalIsland;
 				SDKROOT = macosx;
@@ -829,7 +837,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_HARDENED_RUNTIME = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -841,7 +849,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lincode.PersonalIsland;
 				PRODUCT_NAME = PersonalIsland;
 				SDKROOT = macosx;
