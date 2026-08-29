@@ -1,5 +1,6 @@
 build/
 *.xcresult
 xcuserdata/
-*.xcodeproj/xcuserdata/
+*.xcodeproj/
+.github/workflows/
 .DS_Store
