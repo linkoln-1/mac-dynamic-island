@@ -4,6 +4,23 @@
     <title>PersonalIsland Updates</title>
     <link>https://github.com/linkoln-1/mac-dynamic-island</link>
     <item>
+      <title>1.1.2</title>
+      <pubDate>Wed, 02 Sep 2026 00:07:50 +0300</pubDate>
+      <sparkle:version>4</sparkle:version>
+      <sparkle:shortVersionString>1.1.2</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[
+        <ul>
+          <li>Now Playing no longer keeps a paused video on screen for days: Arc's home-page hover previews are ignored, and anything paused at the same spot for more than ten minutes leaves the island on its own.</li>
+        </ul>
+      ]]></description>
+      <enclosure
+        url="https://github.com/linkoln-1/mac-dynamic-island/releases/download/v1.1.2/PersonalIsland-1.1.2.dmg"
+        length="3751945"
+        type="application/octet-stream"
+        sparkle:edSignature="K+a2kX1snu3Rb19Y5wT9FXjEa/ab9B5cMM+e8r1KddDasCwBVotWDFJl+b5fiVK77boXC2qTeyn41SJKumwkDQ==" />
+    </item>
+    <item>
       <title>1.1.1</title>
       <pubDate>Fri, 28 Aug 2026 17:48:35 +0300</pubDate>
       <sparkle:version>3</sparkle:version>
