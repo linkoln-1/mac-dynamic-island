@@ -30,13 +30,22 @@ session, which explains the user's "PiP fixes it" observation.
 ## Chosen production mechanism
 `/usr/bin/osascript` subprocess per probe (bounded, ~1 Hz max while acting as
 authority), AppleScript that:
-1. iterates windows → tabs, considers tabs whose URL contains a media host
-   (scope this pass: `youtube.com`) plus the previously chosen tab id (fast
-   path);
+1. iterates windows → tabs, considers only tabs whose URL is a playback page
+   (`youtube.com/watch`, `/shorts/`, `/live/`, `/embed/`, `music.youtube.com` —
+   `ArcPlaybackPages`) plus the previously chosen tab id (fast path). The
+   YouTube home page, feeds, search results and channel pages are skipped on
+   purpose: they carry muted hover-preview `<video>` elements that stay paused
+   with `mediaSession` metadata for days and would otherwise be reported as
+   "now playing" forever;
 2. runs one compact JS returning JSON: media elements (`paused/ended/
    currentTime/duration/readyState/muted/playbackRate`), `mediaSession`
    metadata + `playbackState`, `document.title`;
 3. `with timeout of 4 seconds` inside AppleScript + hard `Process` kill at 6 s.
+
+Paused media is not "now playing" forever: `NowPlayingArbiter` drops any
+source (MediaRemote or Arc) whose item has sat paused at the same position for
+longer than `Config.pausedRetention` (10 min). Resuming or seeking brings it
+back immediately.
 Cheap pre-check via `NSRunningApplication` avoids spawning osascript when Arc
 is not running.
 

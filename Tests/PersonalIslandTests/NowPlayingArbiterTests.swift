@@ -9,7 +9,7 @@ final class NowPlayingArbiterTests: XCTestCase {
     override func setUp() {
         virtualNow = Date(timeIntervalSince1970: 10_000)
         arbiter = NowPlayingArbiter(
-            config: .init(switchDebounce: 1.5, emptyGrace: 3.0, arcSnapshotLifetime: 6.0),
+            config: .init(switchDebounce: 1.5, emptyGrace: 3.0, arcSnapshotLifetime: 6.0, pausedRetention: 600),
             now: { self.virtualNow }
         )
     }
@@ -25,6 +25,15 @@ final class NowPlayingArbiterTests: XCTestCase {
         state.duration = 300
         state.isPlaying = true
         return state
+    }
+
+    private func paused(_ state: NowPlayingState, at elapsed: TimeInterval) -> NowPlayingState {
+        var copy = state
+        copy.isPlaying = false
+        copy.playbackRate = 0
+        copy.elapsedTime = elapsed
+        copy.elapsedTimestamp = virtualNow
+        return copy
     }
 
     private func arcState(_ title: String = "Arc Song") -> NowPlayingState {
@@ -119,6 +128,65 @@ final class NowPlayingArbiterTests: XCTestCase {
         arbiter.ingestArc(nil)
         advance(3.5)
         XCTAssertNil(arbiter.tick().state)
+    }
+
+    func testPausedMediaRemoteStaysVisibleWithinRetention() {
+        arbiter.ingestMediaRemote(paused(mrState(), at: 42))
+        advance(599)
+        XCTAssertEqual(arbiter.tick().state?.title, "MR Song")
+    }
+
+    func testPausedMediaRemoteHidesAfterRetention() {
+        arbiter.ingestMediaRemote(paused(mrState(), at: 42))
+        advance(601 + 3.5)
+        let output = arbiter.tick()
+        XCTAssertNil(output.state, "a track paused for longer than the retention is not 'now playing'")
+        XCTAssertNil(output.source)
+    }
+
+    func testPausedArcSnapshotRefreshedByProbesStillExpires() {
+        arbiter.ingestMediaRemote(nil)
+        var elapsedTotal: TimeInterval = 0
+        while elapsedTotal <= 620 {
+            arbiter.ingestArc(paused(arcState("Preview"), at: 3.37))
+            advance(5)
+            elapsedTotal += 5
+        }
+        XCTAssertNil(arbiter.tick().state, "re-probing the same paused tab must not keep it alive forever")
+    }
+
+    func testPlayingMediaNeverExpires() {
+        arbiter.ingestMediaRemote(mrState())
+        advance(3 * 3600)
+        XCTAssertEqual(arbiter.tick().state?.title, "MR Song")
+    }
+
+    func testResumingAfterHiddenPauseShowsImmediately() {
+        arbiter.ingestMediaRemote(paused(mrState(), at: 42))
+        advance(700)
+        XCTAssertNil(arbiter.tick().state)
+
+        let output = arbiter.ingestMediaRemote(mrState())
+        XCTAssertEqual(output.source, .mediaRemote)
+        XCTAssertEqual(output.state?.title, "MR Song")
+    }
+
+    func testSeekingWhilePausedRestartsRetention() {
+        arbiter.ingestMediaRemote(paused(mrState(), at: 10))
+        advance(500)
+        arbiter.ingestMediaRemote(paused(mrState(), at: 90))
+        advance(500)
+        XCTAssertEqual(arbiter.tick().state?.title, "MR Song", "the user touched the item — it is fresh again")
+        advance(200)
+        XCTAssertNil(arbiter.tick().state)
+    }
+
+    func testExpiredPausedMediaRemoteFallsThroughToPlayingArc() {
+        arbiter.ingestMediaRemote(paused(mrState(), at: 42))
+        advance(700)
+        let output = arbiter.ingestArc(arcState())
+        XCTAssertEqual(output.source, .arcBrowser)
+        XCTAssertEqual(output.state?.title, "Arc Song")
     }
 
     private func image() -> NSImage { NSImage(size: NSSize(width: 1, height: 1)) }

@@ -31,7 +31,6 @@ enum ArcPermissionClassifier {
 
 actor ArcBrowserNowPlayingProvider {
 
-    private static let mediaHosts = ["youtube.com"]
     private static let probeTimeout: TimeInterval = 4
     private static let killTimeout: TimeInterval = 6
 
@@ -52,7 +51,7 @@ actor ArcBrowserNowPlayingProvider {
             permissionDeniedAt = nil
         }
 
-        let script = Self.probeScript(mediaHosts: Self.mediaHosts)
+        let script = Self.probeScript(pagePatterns: ArcPlaybackPages.patterns)
         let result = await Self.runOSAScript(script)
         switch ArcPermissionClassifier.classify(exitCode: result.exitCode, stderr: result.stderr) {
         case .denied:
@@ -107,8 +106,8 @@ actor ArcBrowserNowPlayingProvider {
         + "return JSON.stringify({media:m,meta:md?{title:md.title,artist:md.artist,album:md.album}:null,"
         + "dt:document.title})})()"
 
-    static func probeScript(mediaHosts: [String]) -> String {
-        let hostConditions = mediaHosts
+    static func probeScript(pagePatterns: [String]) -> String {
+        let pageConditions = pagePatterns
             .map { "u contains \"\($0)\"" }
             .joined(separator: " or ")
         return """
@@ -118,7 +117,7 @@ actor ArcBrowserNowPlayingProvider {
             repeat with w in windows
                 repeat with t in tabs of w
                     set u to URL of t
-                    if \(hostConditions) then
+                    if \(pageConditions) then
                         try
                             set probeResult to execute t javascript "\(escapedForAppleScript(tabProbeJS))"
                             set output to output & (id of t) & "\t" & probeResult & linefeed

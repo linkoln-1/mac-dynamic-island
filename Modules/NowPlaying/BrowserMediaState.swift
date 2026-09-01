@@ -37,6 +37,21 @@ enum ArcBrowser {
     static let bundleID = "company.thebrowser.Browser"
 }
 
+enum ArcPlaybackPages {
+    static let patterns = [
+        "youtube.com/watch",
+        "youtube.com/shorts/",
+        "youtube.com/live/",
+        "youtube.com/embed/",
+        "music.youtube.com",
+    ]
+
+    static func matches(_ url: String) -> Bool {
+        let lowered = url.lowercased()
+        return patterns.contains { lowered.contains($0) }
+    }
+}
+
 enum BrowserMediaNormalizer {
 
     struct TabProbe: Decodable {

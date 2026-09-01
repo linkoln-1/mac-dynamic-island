@@ -87,8 +87,43 @@ final class BrowserMediaNormalizationTests: XCTestCase {
         XCTAssertEqual(snapshots.first?.elapsed, 135)
     }
 
+    func testOnlyPlaybackPagesQualifyAsBrowserMedia() {
+        let playback = [
+            "https://www.youtube.com/watch?v=abc123",
+            "https://m.youtube.com/watch?v=abc123&t=10s",
+            "https://www.youtube.com/shorts/xyz",
+            "https://www.youtube.com/live/stream1",
+            "https://www.youtube.com/embed/abc123",
+            "https://music.youtube.com/",
+            "https://music.youtube.com/watch?v=abc",
+        ]
+        for url in playback {
+            XCTAssertTrue(ArcPlaybackPages.matches(url), url)
+        }
+
+        let browsing = [
+            "https://www.youtube.com/",
+            "https://www.youtube.com/feed/subscriptions",
+            "https://www.youtube.com/results?search_query=roblox",
+            "https://www.youtube.com/@SomeChannel/videos",
+            "https://www.youtube.com/playlist?list=PL1",
+            "https://example.com/watch?v=abc",
+        ]
+        for url in browsing {
+            XCTAssertFalse(ArcPlaybackPages.matches(url), "hover previews on \(url) are not now playing")
+        }
+    }
+
+    func testProbeScriptGatesTabsByPlaybackPagePatterns() {
+        let script = ArcBrowserNowPlayingProvider.probeScript(pagePatterns: ArcPlaybackPages.patterns)
+        for pattern in ArcPlaybackPages.patterns {
+            XCTAssertTrue(script.contains("u contains \"\(pattern)\""), pattern)
+        }
+        XCTAssertFalse(script.contains("u contains \"youtube.com\""), "a bare host would probe the home page")
+    }
+
     func testProbeScriptSeparatorSurvivesArcTerminology() {
-        let script = ArcBrowserNowPlayingProvider.probeScript(mediaHosts: ["youtube.com"])
+        let script = ArcBrowserNowPlayingProvider.probeScript(pagePatterns: ["youtube.com/watch"])
         XCTAssertFalse(
             script.contains("& tab &"),
             "inside a tell block `tab` resolves to Arc's tab class, not a tab character"

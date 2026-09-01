@@ -13,6 +13,14 @@ final class NowPlayingArbiter {
         var emptyGrace: TimeInterval = 3.0
 
         var arcSnapshotLifetime: TimeInterval = 6.0
+
+        var pausedRetention: TimeInterval = 10 * 60
+    }
+
+    private struct PauseObservation {
+        var fingerprint: String
+        var since: Date
+        var hidden = false
     }
 
     private let config: Config
@@ -22,6 +30,7 @@ final class NowPlayingArbiter {
     private var arcState: NowPlayingState?
     private var arcSampledAt: Date?
     private var artworkMemory = NowPlayingArtworkMemory()
+    private var pauses: [NowPlayingSource: PauseObservation] = [:]
 
     private var authority: NowPlayingSource?
     private var lastSwitchAt: Date?
@@ -39,6 +48,7 @@ final class NowPlayingArbiter {
     @discardableResult
     func ingestMediaRemote(_ state: NowPlayingState?) -> Output {
         mediaRemoteState = state.flatMap(withRememberedArtwork)
+        observePause(mediaRemoteState, from: .mediaRemote)
         return evaluate()
     }
 
@@ -51,12 +61,43 @@ final class NowPlayingArbiter {
             arcState = nil
             arcSampledAt = nil
         }
+        observePause(arcState, from: .arcBrowser)
         return evaluate()
     }
 
     @discardableResult
     func tick() -> Output {
         evaluate()
+    }
+
+    private func observePause(_ state: NowPlayingState?, from source: NowPlayingSource) {
+        guard let state, !state.isPlaying else {
+            pauses[source] = nil
+            return
+        }
+        let fingerprint = Self.pauseFingerprint(state)
+        if pauses[source]?.fingerprint != fingerprint {
+            pauses[source] = PauseObservation(fingerprint: fingerprint, since: now())
+        }
+    }
+
+    private static func pauseFingerprint(_ state: NowPlayingState) -> String {
+        let item = MediaItemIdentity.key(title: state.title, artist: state.artist, duration: state.duration)
+        return "\(item)|\(Int(state.elapsedTime.rounded()))"
+    }
+
+    private func isPausedTooLong(_ source: NowPlayingSource, at moment: Date) -> Bool {
+        guard var observation = pauses[source],
+              moment.timeIntervalSince(observation.since) > config.pausedRetention
+        else { return false }
+        if !observation.hidden {
+            observation.hidden = true
+            pauses[source] = observation
+            Log.nowPlaying.info(
+                "now-playing paused beyond retention — hiding \(source.rawValue, privacy: .public)"
+            )
+        }
+        return true
     }
 
     private func withRememberedArtwork(_ state: NowPlayingState) -> NowPlayingState? {
@@ -91,16 +132,19 @@ final class NowPlayingArbiter {
         }
 
         if let lastGoodState {
-            if graceStartedAt == nil {
-                graceStartedAt = moment
-                Log.nowPlaying.info("now-playing grace started (all sources empty)")
+            let hiddenByRetention = lastGoodSource.flatMap { pauses[$0]?.hidden } ?? false
+            if !hiddenByRetention {
+                if graceStartedAt == nil {
+                    graceStartedAt = moment
+                    Log.nowPlaying.info("now-playing grace started (all sources empty)")
+                }
+                if let started = graceStartedAt,
+                   moment.timeIntervalSince(started) <= config.emptyGrace {
+                    currentOutput = Output(state: lastGoodState, source: lastGoodSource)
+                    return currentOutput
+                }
+                Log.nowPlaying.info("now-playing grace expired — Nothing Playing")
             }
-            if let started = graceStartedAt,
-               moment.timeIntervalSince(started) <= config.emptyGrace {
-                currentOutput = Output(state: lastGoodState, source: lastGoodSource)
-                return currentOutput
-            }
-            Log.nowPlaying.info("now-playing grace expired — Nothing Playing")
             self.lastGoodState = nil
             lastGoodSource = nil
         }
@@ -115,10 +159,10 @@ final class NowPlayingArbiter {
     }
 
     private func pickAuthority(at moment: Date) -> Candidate? {
-        if let mediaRemoteState {
+        if let mediaRemoteState, !isPausedTooLong(.mediaRemote, at: moment) {
             return Candidate(state: mediaRemoteState, source: .mediaRemote)
         }
-        if let arcState {
+        if let arcState, !isPausedTooLong(.arcBrowser, at: moment) {
             return Candidate(state: arcState, source: .arcBrowser)
         }
         return nil
